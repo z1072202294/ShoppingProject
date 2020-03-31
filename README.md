@@ -60,4 +60,5 @@
   - `python manage.py runserver`
   - 浏览器打开 : `http://127.0.0.1` 进入普通用户入口
   - 浏览器打开 : `http://127.0.0.1/admin` 进入超级用户
-
+  
+    

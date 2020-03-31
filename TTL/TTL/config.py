@@ -1,3 +1,3 @@
 DATABASE = 'ttl'
-USER = 'root'
-PASSWORD = '11223.'
+USER = 'mysql用户名'
+PASSWORD = 'mysql用户密码'
