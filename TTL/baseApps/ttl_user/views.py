@@ -7,7 +7,7 @@ from django.http import JsonResponse,HttpResponse
 # from TTL.baseApps.ttl_user.utils import smFunc
 
 from ttl_user import smFunc
-
+import hashlib
 
 # import os,sys
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,8 +33,18 @@ class RegisterView(View, smFunc.User_opera):
         # return render(request,self.get_pages_html)
 
     def post(self,request):
+        '''
+
+        nickname,password,email,show,youbian,phone
+
+        '''
+
         res = self.decode_loads(request.body)
-        print(res.values())
-        self.judgAuth(res.values())
-        # return JsonResponse('注册成功',safe=False)
-        return render(request,self.post_pages_html)
+
+        if res['password1'] != res['password2']:
+
+            return JsonResponse('密码不一样',safe=False)
+
+        back_v = self.judgAuth(res)
+        return JsonResponse(back_v,safe=False)
+        # return render(request,self.post_pages_html)
