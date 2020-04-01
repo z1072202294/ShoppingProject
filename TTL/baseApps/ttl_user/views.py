@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse,HttpResponse
+from django.template import loader
 
 # from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user.utils import smFunc
 
 # from TTL.baseApps.ttl_user.utils import smFunc
 
 from ttl_user import smFunc
-import hashlib
+import hashlib,os,sys
 
 # import os,sys
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,20 +30,21 @@ class RegisterView(View, smFunc.User_opera):
     post_pages_html = ""
 
     def get(self,request):
-        return HttpResponse('注册页面')
-        # return render(request,self.get_pages_html)
+        # sys.path.pop(0)
+        # print(sys.path)
+
+        content_text = {'comman':'w'}
+        return render(request,"ttl_user/register.html",content_text)
+        # return HttpResponse('注册页面')
 
     def post(self,request):
         '''
-
         nickname,password,email,show,youbian,phone
-
         '''
-
-        res = self.decode_loads(request.body)
+        res = request.body
+        print(type(res))
 
         if res['password1'] != res['password2']:
-
             return JsonResponse('密码不一样',safe=False)
 
         back_v = self.judgAuth(res)

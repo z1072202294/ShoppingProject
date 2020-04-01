@@ -5,6 +5,15 @@ import os,sys,requests,json
 os.environ['DJANGO_SETTINGS_MODULE'] = 'TTL.TTL.settings'
 django.setup()
 
+
+# print(os.environ)
+print(type(os.environ))
+
+from TTL.TTL import settings
+print(settings.STATICFILES_DIRS)
+print(settings.TEMPLATES)
+
+
 # from TTL.baseApps.ttl_user.models import UserInfo
 from ttl_user.models import UserInfo
 # print(sys.path)
@@ -32,10 +41,10 @@ dict1 = {
 }
 d1 = {'11':22}
 data = json.dumps(dict1)
-print(data)
-res = requests.post(url=url,data=data)
-res.encoding = 'utf8'
-print(res.text)
+# print(data)
+# res = requests.post(url=url,data=data)
+# res.encoding = 'utf8'
+# print(res.text)
 # print(json.loads(res.text))
 
 
