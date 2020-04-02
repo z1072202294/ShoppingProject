@@ -20,3 +20,4 @@ class GoodsInfo(models.Model):
     isDelete = models.BooleanField(default=False)  # 逻辑删除
     title = models.CharField(max_length=20, unique=True)  # 商品名称
     img = models.ImageField(upload_to='图片路径')
+    a = 123
