@@ -1,5 +1,5 @@
 # from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user.models import UserInfo
-from ttl_user.models import UserInfo
+from .models import UserInfo
 
 # from ..models import UserInfo
 

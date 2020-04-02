@@ -5,7 +5,7 @@ from django.conf.urls import url
 
 # from . import views
 # from TTL.baseApps.ttl_user import views
-from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user import views
+from . import views
 
 
 urlpatterns = [

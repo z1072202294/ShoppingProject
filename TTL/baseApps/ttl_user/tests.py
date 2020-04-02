@@ -20,7 +20,7 @@ print(data)
 
 
 # from TTL.baseApps.ttl_user.models import UserInfo
-from ttl_user.models import UserInfo
+from .models import UserInfo
 
 
 
