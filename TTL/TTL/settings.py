@@ -61,6 +61,7 @@ ROOT_URLCONF = 'TTL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
     << << << < HEAD
     'BACKEND':'django.template.backends.jinja2.Jinja2',
               'DIRS': [],
@@ -79,6 +80,24 @@ fc86b62bc67cb782858660d77522
     ],
 },
 },
+=======
+
+        # 'BACKEND':'django.template.backends.jinja2.Jinja2',
+        # 'DIRS': [],
+
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+>>>>>>> 3ada64af30b33db46b1a4cf1e5c9b99c6024c319
 ]
 
 # 购物车上下文
@@ -90,6 +109,7 @@ WSGI_APPLICATION = 'TTL.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+<<<<<<< HEAD
                 # 'default': {
                 #     'ENGINE': 'django.db.backends.sqlite3',
                 #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -117,6 +137,22 @@ DATABASES = {
 'HOST': '127.0.0.1'
 
 }
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        # 连接的数据库
+        'NAME': 'ttl',
+        # 用户名
+        'USER': 'root',
+        # 密码
+        'PASSWORD': '11223.',
+        # 数据库端口
+        'PORT': '3306',
+        # 连接的地址
+        'HOST': '127.0.0.1'
+
+    }
+>>>>>>> 3ada64af30b33db46b1a4cf1e5c9b99c6024c319
 }
 
 # Password validation
