@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os,sys
-from .config import DATABASE, PASSWORD, USER
+# from .config import DATABASE, PASSWORD, USER
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -62,7 +62,12 @@ ROOT_URLCONF = 'TTL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
+        'BACKEND':'django.template.backends.jinja2.Jinja2',
+        'DIRS': [],
+=======
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+>>>>>>> 538717349661fc86b62bc67cb782858660d77522
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,11 +94,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 连接的数据库
+<<<<<<< HEAD
         'NAME': 'TTL',
         # 用户名
         'USER': 'root',
         # 密码
         'PASSWORD': '258000',
+=======
+        'NAME': 'ttl',
+        # 用户名
+        'USER': 'root',
+        # 密码
+        'PASSWORD': '11223.',
+>>>>>>> f3cedfce4d9dce2a22224cfd980db47027fbcb7b
         # 数据库端口
         'PORT': '3306',
         # 连接的地址

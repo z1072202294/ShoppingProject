@@ -1,8 +1,12 @@
 # from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user.models import UserInfo
+<<<<<<< HEAD
+from .models import UserInfo
+=======
 # from ..models import UserInfo
 from ttl_user.models import UserInfo
 import json
 import hashlib
+>>>>>>> 538717349661fc86b62bc67cb782858660d77522
 
 
 def encryption(res):
