@@ -11,7 +11,7 @@ class TpyeInfoAdmin(admin.ModelAdmin):
 
 
 class GoodsInfoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'goods_title', 'goods_unit', 'goods_image', 'goods_click',
+    list_display = ['id', 'goods_title', 'goods_unit', 'goods_click',
                     'goods_jianjie', 'goods_price', 'goods_kucun']
     list_editable = ['goods_kucun']  # 可编辑的内容
     readonly_fields = ['goods_click']  # 只读内容

@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from baseApps.ttl_goods.models import GoodsInfo
+# from ..ttl_goods.models import GoodsInfo
 
 # Create your models here.
 
