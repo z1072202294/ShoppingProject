@@ -62,8 +62,12 @@ ROOT_URLCONF = 'TTL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'BACKEND':'django.template.backends.jinja2.Jinja2',
         'DIRS': [],
+=======
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+>>>>>>> 538717349661fc86b62bc67cb782858660d77522
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,4 +142,9 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
