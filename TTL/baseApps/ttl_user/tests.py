@@ -6,7 +6,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'TTL.TTL.settings'
 django.setup()
 
 # from TTL.baseApps.ttl_user.models import UserInfo
-from ttl_user.models import UserInfo
+# from ttl_user.models import UserInfo
 # print(sys.path)
 
 
