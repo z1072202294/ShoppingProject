@@ -10,14 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os,sys
+import os, sys
+
 # from .config import DATABASE, PASSWORD, USER
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,os.path.join(BASE_DIR,'baseApps'))
-
-
+sys.path.insert(0, os.path.join(BASE_DIR, 'baseApps'))
 
 # print('settings ========= ',sys.path)
 # print('------------------',os.path)
@@ -62,23 +61,28 @@ ROOT_URLCONF = 'TTL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'BACKEND':'django.template.backends.jinja2.Jinja2',
-        'DIRS': [],
-=======
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
->>>>>>> 538717349661fc86b62bc67cb782858660d77522
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+    << << << < HEAD
+    'BACKEND':'django.template.backends.jinja2.Jinja2',
+              'DIRS': [],
+== == == =
+'DIRS': [os.path.join(BASE_DIR, 'templates')],
+>> >> >> > 538717349661
+fc86b62bc67cb782858660d77522
+'APP_DIRS': True,
+'OPTIONS': {
+    'context_processors': [
+        'django.template.context_processors.debug',
+        'django.template.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+        'cart.context_processors.cart'
+    ],
+},
+},
 ]
+
+# 购物车上下文
+
 
 WSGI_APPLICATION = 'TTL.wsgi.application'
 
@@ -86,33 +90,33 @@ WSGI_APPLICATION = 'TTL.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
+                # 'default': {
+                #     'ENGINE': 'django.db.backends.sqlite3',
+                #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                # },
 
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 连接的数据库
-<<<<<<< HEAD
-        'NAME': 'TTL',
+                'default': {
+                               'ENGINE': 'django.db.backends.mysql',
+                           # 连接的数据库
+                           << << << < HEAD
+                'NAME': 'TTL',
+                # 用户名
+                'USER': 'root',
+                # 密码
+                'PASSWORD': '258000',
+            == == == =
+'NAME': 'ttl',
         # 用户名
         'USER': 'root',
-        # 密码
-        'PASSWORD': '258000',
-=======
-        'NAME': 'ttl',
-        # 用户名
-        'USER': 'root',
-        # 密码
-        'PASSWORD': '11223.',
->>>>>>> f3cedfce4d9dce2a22224cfd980db47027fbcb7b
-        # 数据库端口
-        'PORT': '3306',
-        # 连接的地址
-        'HOST': '127.0.0.1'
+# 密码
+'PASSWORD': '11223.',
+>> >> >> > f3cedfce4d9dce2a22224cfd980db47027fbcb7b
+# 数据库端口
+'PORT': '3306',
+# 连接的地址
+'HOST': '127.0.0.1'
 
-    }
+}
 }
 
 # Password validation
