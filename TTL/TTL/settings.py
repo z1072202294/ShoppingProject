@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'ttl_user.apps.TtlUserConfig',
     'ttl_order.apps.TtlOrderConfig',
     'ttl_goods.apps.TtlGoodsConfig',
-    'ttl_cart.apps.TtlCartConfig'
+    'baseApps.ttl_cart.apps.TtlCartConfig'
 ]
 
 MIDDLEWARE = [
@@ -89,11 +89,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 连接的数据库
-        'NAME': DATABASE,
+        'NAME': 'TTL',
         # 用户名
-        'USER': USER,
+        'USER': 'root',
         # 密码
-        'PASSWORD': PASSWORD,
+        'PASSWORD': '258000',
         # 数据库端口
         'PORT': '3306',
         # 连接的地址
@@ -143,3 +143,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+CART_SESSION_ID = 'ttl_cart'
