@@ -10,14 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os,sys
+import os, sys
+
 # from .config import DATABASE, PASSWORD, USER
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,os.path.join(BASE_DIR,'baseApps'))
-
-
+sys.path.insert(0, os.path.join(BASE_DIR, 'baseApps'))
 
 # print('settings ========= ',sys.path)
 # print('------------------',os.path)
@@ -44,7 +43,7 @@ INSTALLED_APPS = [
     'ttl_user.apps.TtlUserConfig',
     'ttl_order.apps.TtlOrderConfig',
     'ttl_goods.apps.TtlGoodsConfig',
-    'ttl_cart.apps.TtlCartConfig'
+    'baseApps.ttl_cart.apps.TtlCartConfig'
 ]
 
 MIDDLEWARE = [
@@ -86,11 +85,6 @@ WSGI_APPLICATION = 'TTL.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
-
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 连接的数据库
@@ -148,3 +142,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+CART_SESSION_ID = 'ttl_cart'
