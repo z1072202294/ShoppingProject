@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ttl_user.apps.TtlUserConfig',
-    'ttl_order.apps.TtlOrderConfig',
-    'ttl_goods.apps.TtlGoodsConfig',
-    'ttl_cart.apps.TtlCartConfig'
+    'ttl_user',
+    'ttl_order',
+    'ttl_goods',
+    'ttl_cart'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +73,24 @@ TEMPLATES = [
             ],
         },
     },
+    
+        # {
+    #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    #     'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    #
+    #     'APP_DIRS': True,
+    #     'OPTIONS': {
+    #         'context_processors': [
+    #             'django.template.context_processors.debug',
+    #             'django.template.context_processors.request',
+    #             'django.contrib.auth.context_processors.auth',
+    #             'django.contrib.messages.context_processors.messages',
+    #         ],
+    #
+    #         'environment': 'TTL.jinja2_env.environment',
+    #     },
+    # },
+    
 ]
 
 WSGI_APPLICATION = 'TTL.wsgi.application'
@@ -138,3 +156,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
