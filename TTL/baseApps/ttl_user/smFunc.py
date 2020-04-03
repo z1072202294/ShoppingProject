@@ -11,6 +11,7 @@ def encryption(res):
     return md5.hexdigest()
 
 
+
 def de_savePwd(f):
     def inner(dict1):
         username,email, show,youbian,phone,pwd1= f(dict1)
@@ -27,7 +28,6 @@ def savePwd(dict1):
 
 class User_opera():
 
-
     @classmethod
     def decode_loads(cls,backData,entp='utf8'):
         res = backData.decode(entp)
@@ -42,3 +42,6 @@ class User_opera():
         else:
             savePwd(dict1)
             return "注册成功"
+
+
+

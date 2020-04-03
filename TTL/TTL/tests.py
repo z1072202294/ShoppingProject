@@ -8,3 +8,5 @@ print(BASE_DIR)
 print(os.path)
 print(sys.path)
 sys.path.insert(0,os.path.join(BASE_DIR,'baseApps'))
+
+print(sys.path)

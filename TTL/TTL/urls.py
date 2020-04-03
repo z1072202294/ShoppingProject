@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
-from . import v1
+from . import v1,views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index/',views.index,name = 'index'),
     path('user/',include('ttl_user.urls'),name = 'ttl_user'),
     # path('order/',include('ttl_order.urls'),name = 'ttl_order'),
     # path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),

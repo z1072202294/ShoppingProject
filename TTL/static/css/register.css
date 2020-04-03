@@ -1,0 +1,149 @@
+
+
+html, body {
+    height: 100%;
+}
+
+body, ul, ol, p, h1, h2, h3, h4, h5, h6, dl, dd, select, input, textarea, form {
+    margin: 0;
+    padding: 0;
+}
+
+
+head {
+    display: none;
+}
+
+body {
+    display: block;
+}
+
+body {
+	background-color: #ffffff;
+	font-family: "microsoft yahei";
+	font-size: 12px;
+	color:#666;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:before .clearfix:after {
+    content: "";
+    display: table;
+}
+
+
+.clearfix:after {
+    clear: both;
+}
+
+
+
+.navbar {
+	/*margin-bottom: -10px;*/
+
+	width: 960px;
+	height: 130px;
+	margin-right: 0px;
+	display: block;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	
+}
+
+#myppt {
+	margin-top: -20px;
+
+}
+
+
+li {
+	background-color: darkgrey;
+	margin-right: 0px;
+	width: 50px;
+	float: left;
+	margin-right: 0px;
+	position: relative;
+	left:700px;
+
+}
+
+
+
+.backendimg {
+	width: 100%;
+	height: 480px;
+	background-color: #518e17;
+	box-sizing: border-box;
+	margin-bottom: 0px;
+	margin-top: 35px;
+	/* margin-top: 200px; */
+}
+
+div{
+	display: block;
+}
+
+#subimg{
+	width: 381px;
+	height: 322px;
+	background: url("../image/login_banner.png") no-repeat;
+	margin-left: 430px;
+	margin-top: 75px;
+	
+	
+}
+
+.hengfu {
+	width: 40px;
+	    height: 300px;
+	    font-size: 30px;
+	    color: #f0f9e8;
+	    text-align: center;
+	    line-height: 36px;
+	    margin-left: 850px;
+		margin-top: -26.875rem;
+}
+
+.fl {
+    float: left;
+}
+
+.login_logo {
+    display: block;
+    width: 325px;
+    height: 254px;
+    margin-top: -11px;
+	margin-left: 7.25rem;
+	position: absolute;
+}
+
+.decorate{
+	margin-top: -470px;
+	margin-left: 950px;
+	position: absolute;
+	
+	
+}
+
+.shengxian {
+	position: relative;
+	left:1250px;
+	margin-top: 50px;
+	width: 250px;
+	height: 130px;
+	
+}
+
+.shengXianMesg {
+	width: 300px;
+	height: 30px;
+	float: right;
+	text-align: right;
+	font-size: 30px;
+	color: #f0f9e8;
+	margin: -200px 400px 0 0;
+}

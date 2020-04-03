@@ -1,21 +1,21 @@
 from django.test import TestCase
 import django
 import os,sys,requests,json
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'TTL.TTL.settings'
-django.setup()
+#
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'TTL.settings'
+# django.setup()
 
 
 # print(os.environ)
-print(type(os.environ))
+# print(type(os.environ))
 
-from TTL.TTL import settings
-print(settings.STATICFILES_DIRS)
-print(settings.TEMPLATES)
+# from ShoppingProject.TTL.TTL import settings
+# print(settings.STATICFILES_DIRS)
+# print(settings.TEMPLATES)
 
 
 # from TTL.baseApps.ttl_user.models import UserInfo
-from ttl_user.models import UserInfo
+# from ttl_user.models import UserInfo
 # print(sys.path)
 
 
@@ -39,8 +39,8 @@ dict1 = {
     'youbian':'邮政编码',
     'phone':'15935341565'
 }
-d1 = {'11':22}
-data = json.dumps(dict1)
+# d1 = {'11':22}
+# data = json.dumps(dict1)
 # print(data)
 # res = requests.post(url=url,data=data)
 # res.encoding = 'utf8'
@@ -63,11 +63,11 @@ data = json.dumps(dict1)
 # print(UserInfo.objects.all().exists())
 # print(UserInfo.objects.filter(nickname='www').exists())
 
-import hashlib
-def encryption(res):
-    md5 = hashlib.md5()
-    md5.update(res.encode('utf8'))
-    return md5.hexdigest()
+# import hashlib
+# def encryption(res):
+#     md5 = hashlib.md5()
+#     md5.update(res.encode('utf8'))
+#     return md5.hexdigest()
 
 
 
@@ -110,3 +110,12 @@ class A():
 # a = A()
 #
 # a.main()
+class BBBB():
+    def q(cls):
+        return cls.__class__.__name__
+
+
+
+b1 = BBBB()
+
+print(type(b1.q()))
