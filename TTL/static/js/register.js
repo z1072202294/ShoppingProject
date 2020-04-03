@@ -34,7 +34,10 @@ $(function(){
 	function disposeRegis(){
 		$('#regisSubmit').click(function () {
 			if(judgPwd()) {
-				judgUser()
+				// judgUser()
+				alert("True")
+			}else{
+				return ""
 			}
 		});
 	}
@@ -56,7 +59,7 @@ $(function(){
 
 		let data = {"nickname":$('#formRegis input[name=username]').value};
 		let realRegisLink = '{% url register%}';
-		console.log("当前注册页面url==>",window.location.href);
+
 		let response = reqBackend(data,realRegisLink,"post");
 		if(response==false){
 			alert("请求失败,未知的错误")

@@ -40,13 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    # 'ttl_user.apps.TtlUserConfig',
-    # 'ttl_order.apps.TtlOrderConfig',
-    # 'ttl_goods.apps.TtlGoodsConfig',
-    # 'ttl_cart.apps.TtlCartConfig'
-=======
->>>>>>> 06534878862051449519ecf1deeb881859e3e735
     'ttl_user',
     'ttl_order',
     'ttl_goods',
@@ -68,7 +61,8 @@ ROOT_URLCONF = 'TTL.urls'
 
 
 TEMPLATES = [
-    # {
+
+        # {
     #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
     #     'DIRS': [os.path.join(BASE_DIR, 'templates')],
     #
@@ -87,12 +81,7 @@ TEMPLATES = [
 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-
-=======
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
->>>>>>> 06534878862051449519ecf1deeb881859e3e735
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,30 +92,9 @@ TEMPLATES = [
             ],
 
         },
-<<<<<<< HEAD
-    }
 
-=======
     },
-    
-        # {
-    #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
-    #     'DIRS': [os.path.join(BASE_DIR, 'templates')],
-    #
-    #     'APP_DIRS': True,
-    #     'OPTIONS': {
-    #         'context_processors': [
-    #             'django.template.context_processors.debug',
-    #             'django.template.context_processors.request',
-    #             'django.contrib.auth.context_processors.auth',
-    #             'django.contrib.messages.context_processors.messages',
-    #         ],
-    #
-    #         'environment': 'TTL.jinja2_env.environment',
-    #     },
-    # },
-    
->>>>>>> 06534878862051449519ecf1deeb881859e3e735
+
 ]
 
 
@@ -199,7 +167,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-<<<<<<< HEAD
 
-=======
->>>>>>> 06534878862051449519ecf1deeb881859e3e735
