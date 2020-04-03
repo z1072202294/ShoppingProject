@@ -15,6 +15,7 @@ class UserInfo(models.Model):
     youbian = models.CharField(max_length=6, default='')
     # 手机号
     phone = models.CharField(max_length=11, default='', )
+    objects = models.Manager()
 
     class Meta:
         verbose_name = '用户信息'

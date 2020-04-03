@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
@@ -18,4 +19,16 @@ urlpatterns = [
     # url(r'^site/$', site, name="site"),
     # # url(r'^place_order/$', views.place_order),
     # url(r'^logout/$', logout, name="logout"),
+=======
+from django.urls import path,re_path
+
+from . import views
+
+urlpatterns = [
+    # path('myApp', views.index),
+    # path('grades/', views.grades),
+    # path('students/', views.sutdents),
+    path('login/', views.login),
+
+>>>>>>> 06534878862051449519ecf1deeb881859e3e735
 ]
