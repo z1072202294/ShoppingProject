@@ -18,7 +18,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,os.path.join(BASE_DIR,'baseApps'))
 
 
-
 # print('settings ========= ',sys.path)
 # print('------------------',os.path)
 # Quick-start development settings - unsuitable for production
@@ -41,10 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ttl_user.apps.TtlUserConfig',
-    'ttl_order.apps.TtlOrderConfig',
-    'ttl_goods.apps.TtlGoodsConfig',
-    'ttl_cart.apps.TtlCartConfig'
+    # 'ttl_user.apps.TtlUserConfig',
+    # 'ttl_order.apps.TtlOrderConfig',
+    # 'ttl_goods.apps.TtlGoodsConfig',
+    # 'ttl_cart.apps.TtlCartConfig'
+    'ttl_user',
+    'ttl_order',
+    'ttl_goods',
+    'ttl_cart'
 ]
 
 MIDDLEWARE = [
@@ -59,10 +62,30 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'TTL.urls'
 
+
+
 TEMPLATES = [
+    # {
+    #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    #     'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    #
+    #     'APP_DIRS': True,
+    #     'OPTIONS': {
+    #         'context_processors': [
+    #             'django.template.context_processors.debug',
+    #             'django.template.context_processors.request',
+    #             'django.contrib.auth.context_processors.auth',
+    #             'django.contrib.messages.context_processors.messages',
+    #         ],
+    #
+    #         'environment': 'TTL.jinja2_env.environment',
+    #     },
+    # },
+
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,9 +94,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
-    },
+    }
+
 ]
+
+
+
 
 WSGI_APPLICATION = 'TTL.wsgi.application'
 
