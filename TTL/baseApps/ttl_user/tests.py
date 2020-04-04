@@ -32,20 +32,22 @@ url = 'http://127.0.0.1:8000/user/register/'
 
 dict1 = {
     'nickname':'名',
-    'password1':'密码',
-    'password2':'密码',
+    'pwd':'密码',
     'email' : '1149603874@qq.com',
     'shou':'收获地址',
     'youbian':'邮政编码',
-    'phone':'15935341565'
+    'tel':'15935341565'
 }
+
+
+
 # d1 = {'11':22}
-# data = json.dumps(dict1)
+data = json.dumps(dict1)
 # print(data)
-# res = requests.post(url=url,data=data)
-# res.encoding = 'utf8'
+res = requests.post(url=url,data=dict1)
+res.encoding = 'utf8'
 # print(res.text)
-# print(json.loads(res.text))
+print(json.loads(res.text))
 
 
 
@@ -89,10 +91,23 @@ dict1 = {
 # pri('1')
 
 def de_savePwd(f):
-    def inner(instance,food):
-        res = f(instance,food)
-        print('后置')
+    def inner(food):
+        if food==0:
+            res = 0
+        else:
+            res = 1
+        f(food)
+        return {"result":res}
     return inner
+
+
+@de_savePwd
+def req(d):
+    pass
+
+
+# print(req(0))
+
 
 
 class A():
@@ -118,4 +133,16 @@ class BBBB():
 
 b1 = BBBB()
 
-print(type(b1.q()))
+# print(type(b1.q()))
+
+import hashlib
+sha1 = hashlib.sha1('abc'.encode('utf8'))
+res2 = sha1.hexdigest()
+# res2 = sha1.digest()
+#          22
+print(res2)
+#  a9993e364706816aba3e25717850c26c9cd0d89d
+print(len(res2))
+#  40
+
+print(hashlib)

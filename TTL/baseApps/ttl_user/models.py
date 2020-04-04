@@ -6,7 +6,7 @@ class UserInfo(models.Model):
     # 用户名
     nickname = models.CharField(max_length=20, unique=True)
     # 密码
-    password = models.CharField(max_length=32)
+    password = models.CharField(max_length=40)
     # 邮箱
     email = models.EmailField(unique=True,error_messages={'logo':'Unique 不可以重复'})
     # 收货地址

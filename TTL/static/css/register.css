@@ -1,4 +1,12 @@
 
+.error_tip {
+    /*float: left;*/
+    height: 30px;
+    line-height: 30px;
+    margin-left: 70px;
+    color: #e62e2e;
+}
+
 
 html, body {
     height: 100%;
