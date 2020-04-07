@@ -1,4 +1,3 @@
-
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.views import View
@@ -99,4 +98,3 @@ def logout(req):
     response.delete_cookie('nickname')
 
     return response
-

@@ -1,5 +1,4 @@
 """TTL URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -23,7 +22,7 @@ urlpatterns = [
     path('index/',views.index,name = 'index'),
     path('user/',include('ttl_user.urls'),name = 'ttl_user'),
     # path('order/',include('ttl_order.urls'),name = 'ttl_order'),
-    # path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),
+    path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),
     # path('cart/',include('ttl_cart.urls'),name = 'ttl_cart'),
 
 ]
