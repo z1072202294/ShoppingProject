@@ -1,5 +1,5 @@
 from django.db import models
-# from ..ttl_goods.models import GoodsInfo
+from baseApps.ttl_goods.models import GoodsInfo
 from datetime import datetime
 
 
@@ -26,17 +26,16 @@ class UserInfo(models.Model):
         return self.nickname
 
 
-# class GoodsBrowser(models.Model):
-#     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE, verbose_name='用户ID')
-#     goods = models.ForeignKey(GoodsInfo, on_delete=models.CASCADE, verbose_name='商品ID')
-#     browser_time = models.DateTimeField(default=datetime.now, verbose_name='浏览时间')
-#
-#     class Meat:
-#         verbose_name = '用户浏览记录'
-#         verbose_name_plural = verbose_name
-#
-#     def __str__(self):
-#         return '{0}浏览记录{1}'.format(self.user.nickname, self.goods.goods_title)
-# if __name__ == '__main__':
-    # UserInfo()
-    # GoodsBrowser()
+class GoodsBrowser(models.Model):
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE, verbose_name='用户ID')
+    goods = models.ForeignKey(GoodsInfo, on_delete=models.CASCADE, verbose_name='商品ID')
+    browser_time = models.DateTimeField(default=datetime.now, verbose_name='浏览时间')
+
+    class Meat:
+        verbose_name = '用户浏览记录'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '{0}浏览记录{1}'.format(self.user.nickname, self.goods.goods_title)
+
+

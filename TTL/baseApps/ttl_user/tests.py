@@ -15,9 +15,9 @@ print(settings.TEMPLATES)
 
 
 # from TTL.baseApps.ttl_user.models import UserInfo
-<<<<<<< HEAD
+
 from .models import UserInfo
-=======
+
 from ttl_user.models import UserInfo
 # print(sys.path)
 
@@ -30,7 +30,6 @@ from ttl_user.models import UserInfo
 
 # Create your tests here.
 url = 'http://127.0.0.1:8000/user/register/'
->>>>>>> 538717349661fc86b62bc67cb782858660d77522
 
 
 

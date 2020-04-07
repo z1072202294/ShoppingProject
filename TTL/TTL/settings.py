@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ttl_user.apps.TtlUserConfig',
-    'ttl_order.apps.TtlOrderConfig',
-    'ttl_goods.apps.TtlGoodsConfig',
-    'baseApps.ttl_cart.apps.TtlCartConfig'
+    'ttl_user',
+    'ttl_order',
+    'ttl_goods',
+    'ttl_cart'
 ]
 
 MIDDLEWARE = [
@@ -60,10 +60,10 @@ ROOT_URLCONF = 'TTL.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [],
+        # 'DIRS': [],
 
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
 
@@ -74,28 +74,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processors.cart'
+                # 'cart.context_processors.cart'
             ],
         },
-    },
-
-    # 'BACKEND':'django.template.backends.jinja2.Jinja2',
-    # 'DIRS': [],
-
-    'DIRS': [os.path.join(BASE_DIR, 'templates')],
-
-            'APP_DIRS': True,
-'OPTIONS': {
-    'context_processors': [
-        'django.template.context_processors.debug',
-        'django.template.context_processors.request',
-        'django.contrib.auth.context_processors.auth',
-        'django.contrib.messages.context_processors.messages',
-    ],
-},
-},
-
-]
+    }, ]
 
 # 购物车上下文
 
@@ -106,69 +88,40 @@ WSGI_APPLICATION = 'TTL.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-<< << << < HEAD
-# 'default': {
-#     'ENGINE': 'django.db.backends.sqlite3',
-#     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-# },
 
-'default': {
-               'ENGINE': 'django.db.backends.mysql',
-           # 连接的数据库
-           << << << < HEAD
-'NAME': 'TTL',
-# 用户名
-'USER': 'root',
-# 密码
-'PASSWORD': '258000',
-== == == =
-'NAME': 'ttl',
-# 用户名
-'USER': 'root',
-# 密码
-'PASSWORD': '11223.',
->> >> >> > f3cedfce4d9dce2a22224cfd980db47027fbcb7b
-# 数据库端口
-'PORT': '3306',
-# 连接的地址
-'HOST': '127.0.0.1'
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        # 连接的数据库
+        'NAME': 'ttl',
+        # 用户名
+        'USER': 'root',
+        # 密码
+        'PASSWORD': '11223.',
+        # 数据库端口
+        'PORT': '3306',
+        # 连接的地址
+        'HOST': '127.0.0.1'
 
-}
-== == == =
-'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    # 连接的数据库
-    'NAME': 'ttl',
-    # 用户名
-    'USER': 'root',
-    # 密码
-    'PASSWORD': '11223.',
-    # 数据库端口
-    'PORT': '3306',
-    # 连接的地址
-    'HOST': '127.0.0.1'
+    }
 
-}
->> >> >> > 3
-ada64af30b33db46b1a4cf1e5c9b99c6024c319
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-{
-    'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-},
-{
-    'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-},
-{
-    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-},
-{
-    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 # Internationalization
@@ -191,7 +144,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 CART_SESSION_ID = 'ttl_cart'
