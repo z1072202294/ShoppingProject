@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form action="./1.php" method="post" name="denglu">
+		账号: <input type="text" name="uname">
+		<br>
+		密码: <input type="password" name="upwd">
+		<br>
+		服务器: <select name="ser">
+					<option value="jlzc">巨龙之巢</option>
+					<option value="tmxy">德玛西亚</option>
+			   </select>
+		<br>
+		<input type="submit" name="">
+	</form>
+
+	<script type="text/javascript">
+		// 获取焦点
+		document.denglu.uname.onfocus = function(){
+			this.style.backgroundColor = 'skyblue'
+		};
+
+		// 失去焦点  通常用来:获取输入值,然后进行验证
+		document.denglu.uname.onblur = function(){
+			alert( this.value.trim().length)
+		};
+
+		// 输入字符时
+		document.denglu.uname.oninput = function(){
+			console.log('正在输入...')
+		};
+
+		// 下拉列表选项改变  其它表单项也可以使用
+		document.denglu.ser.onchange = function(){
+			alert('你要换服务器?')
+		};
+
+		// 表单提交事件. 绑定到表单整体上
+		document.denglu.onsubmit = function(e){
+			alert('想好了吗?');
+			e.preventDefault()
+		}
+	</script>
+</body>
+</html>

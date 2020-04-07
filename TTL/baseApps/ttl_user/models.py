@@ -8,7 +8,7 @@ class UserInfo(models.Model):
     # 用户名
     nickname = models.CharField(max_length=20, unique=True)
     # 密码
-    password = models.CharField(max_length=32)
+    password = models.CharField(max_length=40)
     # 邮箱
     email = models.EmailField(unique=True, error_messages={'logo': 'Unique 不可以重复'})
     # 收货地址
@@ -17,6 +17,7 @@ class UserInfo(models.Model):
     youbian = models.CharField(max_length=6, default='')
     # 手机号
     phone = models.CharField(max_length=11, default='', )
+    objects = models.Manager()
 
     class Meta:
         verbose_name = '用户信息'

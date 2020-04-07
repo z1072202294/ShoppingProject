@@ -1,126 +1,467 @@
-<!DOCTYPE html>
+
+<!DOCTYPE >
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>index</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Register</title>
+    {% load static %}
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/register.css" />
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="../otherJs/selfRegister.otherJs"></script> -->
+{#	<script type="text/javascript" src="/static/js/register.js"></script>#}
 
-    <style>
-        body {
-            background-color: #ccc
-        ;
-            font-family: "microsoft yahei"
-        ;
-        /*min-width: 800px;*/
-        }
-        img {
-            width: 100%;
-            /*height: 462px;*/
-        }
+    <script type="text/javascript">
+        $(function(){
 
-        .navbar {
-            /*margin-bottom: -10px;*/
-        }
+// Test
+	var reg = '{{ REGIS }}'||null;
+	var log = '{{ LOGIN }}'||null;
 
-        #myppt {
-            margin-top: -20px;
 
+// Pages loaded check register or login
+	console.log(reg);
+	console.log(log);
+
+	$(document).ready(function () {
+		judgRegisOrLogin();
+
+		$('#username').blur(function() {
+		check_user_name();
+		});
+
+		$('#pwd1').blur(function() {
+			check_pwd();
+		});
+
+		$('#pwd2').blur(function() {
+			check_cpwd();
+		});
+
+		$('#email').blur(function() {
+			check_email();
+		});
+
+		$('#tel').blur(function() {
+			check_tel();
+		});
+	});
+
+	function check_user_name(){
+
+		var len = $('#username').val().length;
+
+		if(len<6||len>15)
+		{
+			$('#username').next().html('输入6-15个字符的用户名');
+			$('#username').next().show();
+		}
+		else
+		{
+			$('#username').next().hide();
+			let url = window.location.href;
+
+			  $.post(url,
+				  {
+					judgUsname:$('#username').val(),
+				  },
+				  function(data,status){
+                    if (data.result==0)
+                    {
+                    	$('#username').next().html('用户名已经存在').show();
+                	}
+                    else
+                    {
+                    	$('#username').next().hide();
+                	}
+				  });
         }
-    </style>
+	}
+
+	function check_pwd() {
+		var len = $('#pwd1').val().length;
+		if(len<6)
+		{
+			$('#pwd1').next().html('密码至少6位');
+			$('#pwd1').next().show();
+		}
+		else
+		{
+			$('#pwd1').next().hide();
+		}
+	}
+
+	function check_cpwd(){
+		var pass = $('#pwd1').val();
+
+		var cpass = $('#pwd2').val();
+
+		if(cpass==pass)
+		{
+			$('#pwd2').next().hide();
+
+		}
+		else
+		{
+			$('#pwd2').next().html('两次输入的密码不一致');
+			$('#pwd2').next().show();
+		}
+
+	}
+
+	function check_email(){
+		var re = /^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$/;
+
+		if(re.test($('#email').val()))
+		{
+			$('#email').next().hide();
+		}
+		else
+		{
+			$('#email').next().html('你输入的邮箱格式不正确');
+			$('#email').next().show();
+		}
+
+	}
+
+
+	function check_tel(){
+		var len = $('#tel').val().length;
+		if (len==11)
+		{
+			$('#tel').next().hide();
+		}
+		else
+		{
+			$('#tel').next().html('');
+			$('#tel').next().show();
+		}
+	}
+
+
+// Judg resig or login
+// Dispose resig or login
+	function judgRegisOrLogin(){
+		if(reg)
+		{
+			$("#idRegis").trigger('click');
+            $('#regisSubmit').click(function () {
+			    RegisSubim()
+		    });
+		}
+		else
+        {
+			$("#idLogin").trigger('click');
+            $('#loginSubmit').click(function () {
+                LoginSubim()
+            });
+		}
+	}
+
+
+/*	====Regis submit==== */
+
+ 	// Judg username
+	function RegisSubim(){
+
+		let usname = $('#username').val();
+		let pswd = $('#pwd1').val();
+		let email = $('#email').val();
+		let tel = $('#tel').val();
+		let data = {
+			nickname:usname,
+			pwd:pswd,
+			email:email,
+			tel:tel
+		};
+		let realRegisLink = window.location.href;
+        $.post(
+		    realRegisLink,
+		    data,
+  		    function(data,status){
+                window.location = data.redirect;
+		    }
+		);
+	}
+
+
+/*	====Login Subim==== */
+
+	function LoginSubim() {
+		let data = {
+			"nickname":$('#formLogin input[type="text"]').val(),
+			"pwd":$('#formLogin input[type="password"]').val()
+		};
+        let realLoginLink = window.location.href;
+        $.post(
+		    realLoginLink,
+		    data,
+  		    function(data,status){
+                if(data){
+                    $('#loginpwd').next().hide();
+                    window.location = data.redirect;
+                }else{
+                    $('#loginpwd').next().html("用户名或密码不正确");
+                    $('#loginpwd').next().show()
+                }
+            }
+		);
+
+
+	}
+
+	// Login successed link index
+	function linkIndex() {
+
+	}
+
+/* 	Ajax req backend	*/
+	function reqBackend(data,url,judgReqMethod) {
+		var xmlhttp;
+		if (window.XMLHttpRequest){
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp = new XMLHttpRequest();
+		  return chooseMethod(xmlhttp,data,url,judgReqMethod)
+
+	  }else{
+			  // code for IE6, IE5
+		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  return chooseMethod(xmlhttp,data,url,judgReqMethod)
+
+	  }
+	}
+
+
+// Choose req method
+	function chooseMethod(xhr,data,url,judgReqMethod){
+			// 2.连接成功后的处理函数(回调函数)
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState==4 && xhr.status==200) {
+				return xhr
+			}else{
+				return false
+			}
+		};
+
+		if(judgReqMethod=="get"){
+			// 3.建立连接
+			xhr.open('get', url, true);
+
+			// 4.发送数据
+			xhr.send()
+
+		}else{
+			// post
+			// 3.1建立连接
+			xhr.open('post',url, true);
+
+			// 3.2 post请求 要设置请求头
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+			// 4.发送   参数名称 是 服务器端规定好的
+			xhr.send(data)
+		}
+	}
+
+
+// 搜索 <ajax>
+	function showHint(str)
+	{
+	var xmlhttp;
+	if (str.length==0)
+	  {
+	  document.getElementById("txtHint").innerHTML="";
+	  return;
+	  }
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+		}
+	  };
+	xmlhttp.open("GET","gethint.asp?q="+str,true);
+	xmlhttp.send();
+	}
+
+
+});
+
+
+
+    </script>
+
+
 </head>
 <body>
 
 
-<ul class="nav navbar-nav navbar-right">
-    <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span> 注册</a>
-    </li>
-    <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-</ul>
-<!-- 注册窗口 -->
-<div id="register" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-title">
-                <h1 class="text-center">注册</h1>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" action="/user/register/" method="post">
-                    <div class="form-group">
-                        <label for="register">用户名</label>
-                        <input class="form-control" type="text" required="true" placeholder="6-15位字母或数字">
-                    </div>
-                    <div class="form-group">
-                        <label for="register">密码</label>
-                        <input class="form-control" type="password" required="true" placeholder="至少6位字母或数字">
-                    </div>
-                    <div class="form-group">
-                        <label for="">再次输入密码</label>
-                        <input class="form-control" type="password" required="true" placeholder="至少6位字母或数字">
-                    </div>
-                    <div class="form-group">
-                        <label for="">邮箱</label>
-                        <input class="form-control" type="email" required="true" placeholder="例如:123@123.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="">手机号</label>
-                        <input class="form-control" type="tel" required="true" placeholder="例如:123@123.com">
-                    </div>
-                    <div class="text-right">
-                        <button class="btn btn-primary" type="submit">提交</button>
-                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                    </div>
-                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 登录窗口 -->
-<div id="login" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-title">
-                <h1 class="text-center">登录</h1>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" action="">
-                    <div class="form-group">
-                        <label for="">用户名</label>
-                        <input class="form-control" type="text" required="true" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="">密码</label>
-                        <input class="form-control" type="password"  placeholder="">
-                    </div>
-                    <div class="text-right">
-                        <button class="btn btn-primary" type="submit">登录</button>
-                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                    </div>
-                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+	<ul class="navbar nav clearfix">
+		<li id="liRegis" style="display: none"><a id="idRegis" data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user" ></span> 注册</a></li>
+		<li id="liLogin" style="display: none"><a id="idLogin" data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+		<a href="/" ><img class="login_logo" src="/static/image/logo5.png"></a>
 
-    <script>
-        function judgPwd() {
+		<a href="/"><img class="shengxian" src="/static/image/logobig.png"></a>
+	</ul>
+
+	<div class="backendimg clearfix">
+		<div id="subimg"></div>
+		<div class="hengfu f1">日夜兼程 * 急速送达</div>
+		<img class="decorate" src="/static/image/register_banner.png" />
+		<div class="shengXianMesg">
+			足不出户
+			<br/>
+		*
+			<br/>
+		新鲜每一天</div>
+
+	</div>
+
+	<!-- 注册窗口 -->
+	<div id="register" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-title">
+					<h1 class="text-center">注册</h1>
+				</div>
+				<div class="modal-body">
+					<form id="formRegis" class="form-group" action="" method="" name="regis">
+						<div class="form-group">
+							<label for="register">用户名</label>
+							<input class="form-control" type="text" required="true" placeholder="6-15位字母或数字" id="username">
+                            <span class="error_tip" style="display: none">提示信息</span>
+						</div>
+						<div class="form-group">
+							<label for="register">密码</label>
+							<input class="form-control" type="password" required="true" placeholder="至少6位字母或数字" id="pwd1">
+                            <span class="error_tip" style="display: none">提示信息</span>
+						</div>
+						<div class="form-group">
+							<label for="">再次输入密码</label>
+
+							<input class="form-control" type="password" required="true" placeholder="至少6位字母或数字" id="pwd2">
+                            <span class="error_tip" style="display: none">提示信息</span>
+
+						</div>
+						<div class="form-group">
+							<label for="">邮箱</label>
+							<input class="form-control" type="email" required="true" placeholder="例如:123@123.com" id="email">
+                            <span class="error_tip" style="display: none">提示信息</span>
+						</div>
+						<div class="form-group">
+							<label for="">手机号</label>
+							<input class="form-control" type="tel" required="true" placeholder="例如:11位-111****111" id="tel">
+                            <span class="error_tip" style="display: none">提示信息</span>
+						</div>
+						<div class="text-right">
+						</div>
+						<a href='{% url 'login' %}' data-target="#login">已有账号？点我登录</a>
+					</form>
+                            <button id="regisSubmit" class="btn btn-primary" type="submit" >提交</button>
+							<button class="btn btn-danger" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 登录窗口 -->
+	<div id="login" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-title">
+					<h1 class="text-center">登录</h1>
+				</div>
+				<div class="modal-body">
+					<form id="formLogin" class="form-group" action=''>
+						<div class="form-group">
+							<label for="">用户名</label>
+							<input class="form-control" type="text" required="true" placeholder="" id="loginname">
+						</div>
+						<div class="form-group">
+							<label for="">密码</label>
+							<input class="form-control" type="password"  placeholder="" id="loginpwd">
+                            <span class="error_tip" style="display: none">提示信息</span>
+						</div>
+						<div class="text-right">
+						</div>
+						<a href='{% url 'register' %}' data-target="#register">还没有账号？点我注册</a>
+					</form>
+                        <button id="loginSubmit" class="btn btn-primary" type="submit">登录</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div id="Self_exercise" hidden="hidden" >
+		var pwd = $('#formRegis input[type="password"]') ;
+
+            console.log(password.text());
+            console.log(password.html());
+            console.log("索引");
+            console.log(password[0].val());
+            console.log(password[1].text());
+
+        document.regis.onsubmit = function(){
+            let name = document.regis.username.value;
+            alert(name)
 
         }
-    </script>
+
+
+        $("#regisSubmit").click(function () {
+            alert("HTML",$("#formRegis").html());
+        });
+
+        $("#regisSubmit").click(function () {
+            alert("text",$("#formRegis").text());
+        });
+
+        $("#regisSubmit").click(function () {
+            alert("val",$("#formRegis").val());
+        });
+
+
+        function getPost(judg){
+            let list1 = "register";
+
+            if(judg&&list1){
+                var form1 = $('#formRegis');
+                var content = form1.elements[0].value();
+                alert(content);
+
+            }
+        }
+	</div>
+
+
+<script>
+
+</script>
+
 
 </body>
 </html>
