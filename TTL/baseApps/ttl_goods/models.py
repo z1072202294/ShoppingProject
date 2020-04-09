@@ -19,7 +19,7 @@ class GoodsInfo(models.Model):
     # 商品具体信息
     isDelete = models.BooleanField(default=False)  # 逻辑删除
     goods_title = models.CharField(max_length=20, unique=True, verbose_name='商品名称')  # 商品名称
-    # goods_image = models.ImageField(verbose_name='商品图片', upload_to='df_goods/%Y/%m', null=True, blank=True)  # 商品图片
+    goods_image = models.ImageField(verbose_name='商品图片', upload_to='df_goods/image/%Y/%m', null=True, blank=True)  # 商品图片
     goods_price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='商品价格')  # 商品价格
     goods_unit = models.CharField(max_length=20, default='230g', verbose_name='单个商品重量')  # 商品重量
     goods_click = models.IntegerField(verbose_name='点击量', default='0', null=False)
