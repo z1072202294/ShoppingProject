@@ -1,9 +1,11 @@
 from django.db import models
-from baseApps.ttl_goods.models import GoodsInfo
+# from ShoppingProject.TTL.baseApps.ttl_goods.models import GoodsInfo
+# from baseApps.ttl_goods.models import GoodsInfo
+from ttl_goods.models import GoodsInfo
 from datetime import datetime
 
 
-# Create your models here.
+# Create your models here.s
 class UserInfo(models.Model):
     # 用户名
     nickname = models.CharField(max_length=20, unique=True)
@@ -12,7 +14,7 @@ class UserInfo(models.Model):
     # 邮箱
     email = models.EmailField(unique=True, error_messages={'logo': 'Unique 不可以重复'})
     # 收货地址
-    shou = models.CharField(max_length=100, default='')
+    shou = models.TextField(max_length=5000, default='[]')
     # 邮编
     youbian = models.CharField(max_length=6, default='')
     # 手机号

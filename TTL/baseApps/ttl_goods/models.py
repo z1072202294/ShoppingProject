@@ -1,7 +1,7 @@
 from django.db import models
-
-
-# Create your models here.
+#
+#
+# # Create your models here.
 class TypeInfo(models.Model):
     # 商品分类信息
     isDelete = models.BooleanField(default=False)  # 逻辑删除
@@ -14,7 +14,7 @@ class TypeInfo(models.Model):
     def __str__(self):
         return self.title
 
-
+#
 class GoodsInfo(models.Model):
     # 商品具体信息
     isDelete = models.BooleanField(default=False)  # 逻辑删除

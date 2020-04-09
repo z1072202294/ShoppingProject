@@ -4,7 +4,13 @@ import os,sys,requests,json
 #
 # os.environ['DJANGO_SETTINGS_MODULE'] = 'TTL.settings'
 # django.setup()
-
+#
+# from django.core.cache import cache
+#
+# import test2
+#
+# test2.w()
+# print(cache["name"])
 
 # print(os.environ)
 # print(type(os.environ))
@@ -47,7 +53,7 @@ data = json.dumps(dict1)
 res = requests.post(url=url,data=dict1)
 res.encoding = 'utf8'
 # print(res.text)
-print(json.loads(res.text))
+# print(json.loads(res.text))
 
 
 
@@ -131,7 +137,7 @@ class BBBB():
 
 
 
-b1 = BBBB()
+# b1 = BBBB()
 
 # print(type(b1.q()))
 
@@ -140,9 +146,33 @@ sha1 = hashlib.sha1('abc'.encode('utf8'))
 res2 = sha1.hexdigest()
 # res2 = sha1.digest()
 #          22
-print(res2)
+# print(res2)
 #  a9993e364706816aba3e25717850c26c9cd0d89d
-print(len(res2))
+# print(len(res2))
 #  40
 
-print(hashlib)
+# print(hashlib)
+dit = {1:3}
+
+str1 = json.dumps(dit)
+print(type(str1))
+
+lst = [dit]
+
+str2 = json.dumps(lst)
+print(str2)
+
+l = '[]'
+print(json.loads(l))
+
+
+a = [{"addr": "1", "shouname": "1", "tel": "1", "flag": 10}]
+
+b = json.dumps(a)
+print(json.loads(b))
+
+c = []
+print(c.append(1))
+print(c)
+
+

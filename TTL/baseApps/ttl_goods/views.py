@@ -1,12 +1,13 @@
 from django.shortcuts import render, HttpResponse
 from django.core.paginator import Paginator
-from baseApps.ttl_user.models import UserInfo, GoodsBrowser
+from ttl_user.models import UserInfo, GoodsBrowser
 from .models import TypeInfo, GoodsInfo
-from baseApps.ttl_cart.models import CartInfo
+from ttl_cart.models import CartInfo
 
 
 # Create your views here.
 def index(request):
+    print("==========")
     # 查询各个分类的最新4条，最热4条数据
     type_list = TypeInfo.objects.all()
     type0 = type_list[0].goodsinfo_set.order_by('-id')[0:4]
@@ -37,7 +38,7 @@ def index(request):
             'type4': type4, 'type41': type41,
             'type5': type5, 'type51': type51,
         }
-    return render(request, 'ttl_goods/index.html', context)
+    return render(request, 'ttl_goods/index.html', context=context)
 
 
 def good_list(request, tid, pindex, sort):
@@ -80,7 +81,7 @@ def good_list(request, tid, pindex, sort):
         'sort': sort,  # 排序方式
         'news': news,
     }
-    return render(request, 'ttl_goods/list.html', context)
+    return render(request, 'ttl_goods/list.html', context=context)
 
 
 def detail(request, gid):

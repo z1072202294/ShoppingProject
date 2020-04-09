@@ -19,7 +19,8 @@ from . import v1,views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/',views.index,name = 'index'),
+    path('',views.index,name = 'index'),
+    # path('',include('ttl_goods.urls')),
     path('user/',include('ttl_user.urls'),name = 'ttl_user'),
     # path('order/',include('ttl_order.urls'),name = 'ttl_order'),
     path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),

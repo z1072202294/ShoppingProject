@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
 {% load static %}
-    <title>{% block title %}Index{% endblock %}</title>
+    <title>{% block title %}天天淘乐{% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    {% block cs %}{% endblock %}
 
  <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
-
-
 <body style="background-color:rgb(244,244,244)">
 
     <div id="top" class="ng-toolbar">
             <div class="ng-toolbar-con wrapper">
                 <div class="ng-toolbar-left">
-                    <a href="/index/" class="ng-bar-node ng-bar-node-backhome" id="ng-bar-node-backhome" name="public0_none_gongju_fanhui" sap-modid="pyiw5">
+                    <a href="/" class="ng-bar-node ng-bar-node-backhome" id="ng-bar-node-backhome" name="public0_none_gongju_fanhui" sap-modid="pyiw5">
                         <i class="ng-iconfont ng-backhome"></i>
                         <span class="glyphicon glyphicon-home" aria-hidden="true">  返回首页</span>
                     </a>
@@ -32,15 +31,15 @@
                         </a>
                         <a id="goRegis" class="ng-bar-node ng-bar-node-backhome" href="/user/register/">
                             <i class="ng-iconfont ng-backhome"></i>
-                            <span></span>
+                            <span>注册</span>
                         </a>
                         <a id="goShopCart" class="ng-bar-node ng-bar-node-backhome">
                             <i class="ng-iconfont ng-backhome"></i>
-                            <span></span>
+                            <span>购物车</span>
                         </a>
                         <a id="goMyOrder" class="ng-bar-node ng-bar-node-backhome">
                             <i class="ng-iconfont ng-backhome"></i>
-                            <span></span>
+                            <span>我的订单</span>
                         </a>
 
                 </div>
@@ -49,7 +48,7 @@
 
     <div style="width: 100%;background-color: white">
        <div id="logo">
-       <a href="/index/">
+       <a href="/">
            <img id="logoimg" src="/static/image/logo4.png">
         </a>
    </div>
@@ -131,45 +130,72 @@
    {% endblock %}
         </div>
 
-
-
-    <script type="text/javascript">
-        var sn =
-            {
-                isHome:true
-            };
-        var user = '{{ name }}'||null;
-        var lst = ["good","bad"];
-        if(!sn.isHome) {
-            {#document.getElementById('ng-bar-node-backhome').style.display = block}#}
-            $('#ng-bar-node-backhome').css('display','block')
-        }
-        $().ready(function () {
-            var userEsis = $("#userExists span:first");
-            var userEsisHref = $("#userExists");
-            var regis = $("#goRegis");
-            var shopCart = $('#goShopCart');
-            var myOrder = $('#goMyOrder');
-            if(user){
-                userEsis.html(user);
-                userEsis.css("color","red");
-                userEsisHref.attr("href","/user/info/");
-            }else{
-                userEsis.html("请登录");
-                userEsis.css("color","red");
-                regis.html("注册");
-                shopCart.html("购物车");
-                myOrder.html("我的订单");
-                regis.attr('href',"/user/register");
-                userEsisHref.attr('href',"/user/login");
-                shopCart.attr('href','/user/login/');
-                myOrder.attr('href','/user/login/');
-            }
-        });
-
-        {% block script %}
-        {% endblock %}
-
-    </script>
 </body>
+<script type="text/javascript">
+    // todo
+    var user = '{{ request.session.name }}'||null;
+    {% block scriptFlag %}
+    var sn = {isHome:true};
+    {% endblock%}
+
+    if(!sn.isHome) {
+        {#document.getElementById('ng-bar-node-backhome').style.display = block}#}
+        $('#ng-bar-node-backhome').css('display', 'block')
+    }
+
+    $().ready(function () {
+        var userEsis = $("#userExists span:first");
+        var userEsisHref = $("#userExists");
+        var regis = $("#goRegis");
+        var shopCart = $('#goShopCart');
+        var myOrder = $('#goMyOrder');
+        if(user){
+            userEsis.html(user);
+            userEsis.css("color","red");
+            userEsisHref.attr("href","/user/center/");
+            shopCart.attr('href','/user/shopCart/');
+            myOrder.attr('href','/user/myOrder/');
+        }else{
+            userEsis.html("请登录");
+            userEsis.css("color","red");
+            userEsisHref.attr('href',"/user/login");
+            shopCart.attr('href','/user/login/');
+            myOrder.attr('href','/user/login/');
+        }
+        {% block ajx %}
+        {% endblock %}
+    });
+
+
+
+
+    /*
+        $().ready(function () {
+         $.ajax({
+        'type': 'head',
+        'url': "",
+        'success': function (data, status, xhr) {
+            console.log(xhr.getAllResponseHeaders());
+            var header = {
+                //登录用户名
+                "name": xhr.getResponseHeader('name'),
+                // 登录session
+                "session": xhr.getResponseHeader('session'),
+                // 用户编号
+                "userId": xhr.getResponseHeader('userId'),
+            };
+            console.log("name:" + header.name + "，session:" + header.session + "，userId:" + header.userId);
+            console.log(xhr.getAllResponseHeaders())
+        },
+        'error': function (data, status, xhr) {
+
+        }
+    })
+
+    });
+    */
+
+
+
+</script>
 </html>

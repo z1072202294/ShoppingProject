@@ -142,6 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -159,6 +162,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+# SESSION_COOKIE_AGE = 1
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
