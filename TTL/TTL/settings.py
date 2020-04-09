@@ -7,13 +7,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os,sys
+import os, sys
 from .config import DATABASE, PASSWORD, USER
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,os.path.join(BASE_DIR,'baseApps'))
-
+sys.path.insert(0, os.path.join(BASE_DIR, 'baseApps'))
 
 # print('settings ========= ',sys.path)
 # print('------------------',os.path)
@@ -40,7 +39,8 @@ INSTALLED_APPS = [
     'ttl_user',
     'ttl_order',
     'ttl_goods',
-    'ttl_cart'
+    'ttl_cart',
+    'tinymce',  # 使用富文本编辑框要在settings文件中安装
 ]
 
 MIDDLEWARE = [
@@ -55,11 +55,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'TTL.urls'
 
-
-
 TEMPLATES = [
 
-        # {
+    # {
     #     'BACKEND': 'django.template.backends.jinja2.Jinja2',
     #     'DIRS': [os.path.join(BASE_DIR, 'templates')],
     #
@@ -93,9 +91,6 @@ TEMPLATES = [
     },
 
 ]
-
-
-
 
 WSGI_APPLICATION = 'TTL.wsgi.application'
 
@@ -164,3 +159,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+MEDIA_URL = '/media/'
+# 设置上传文件的路径
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 指定根目录
+
+# 富文本编辑框的使用配置
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}

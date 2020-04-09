@@ -1,5 +1,5 @@
 
 DATABASE = 'ttl'
 USER = 'root'
-PASSWORD = '222677'
+PASSWORD = '11223.'
 

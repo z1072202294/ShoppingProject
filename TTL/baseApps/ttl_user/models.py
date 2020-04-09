@@ -1,5 +1,5 @@
 from django.db import models
-from baseApps.ttl_goods.models import GoodsInfo
+from ttl_goods.models import GoodsInfo
 from datetime import datetime
 
 
