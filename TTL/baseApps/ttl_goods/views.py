@@ -10,33 +10,35 @@ def index(request):
     print("==========")
     # 查询各个分类的最新4条，最热4条数据
     type_list = TypeInfo.objects.all()
+    print(type_list[0])
     type0 = type_list[0].goodsinfo_set.order_by('-id')[0:4]
     type01 = type_list[0].goodsinfo_set.order_by('-goods_click')[0:4]
-    type1 = type_list[1].goodsinfo_set.order_by('-goods_click')[0:4]
-    type11 = type_list[1].goodsinfo_set.order_by('-goods_click')[0:4]
-    type2 = type_list[2].goodsinfo_set.order_by('-goods_click')[0:4]
-    type21 = type_list[2].goodsinfo_set.order_by('-goods_click')[0:4]
-    type3 = type_list[3].goodsinfo_set.order_by('-goods_click')[0:4]
-    type31 = type_list[3].goodsinfo_set.order_by('-goods_click')[0:4]
-    type4 = type_list[4].goodsinfo_set.order_by('-goods_click')[0:4]
-    type41 = type_list[4].goodsinfo_set.order_by('-goods_click')[0:4]
-    type5 = type_list[5].goodsinfo_set.order_by('-goods_click')[0:4]
-    type51 = type_list[5].goodsinfo_set.order_by('-goods_click')[0:4]
+    # type1 = type_list[1].goodsinfo_set.order_by('-id')[0:4]
+    # type11 = type_list[1].goodsinfo_set.order_by('-goods_click')[0:4]
+    # type2 = type_list[2].goodsinfo_set.order_by('-id')[0:4]
+    # type21 = type_list[2].goodsinfo_set.order_by('-goods_click')[0:4]
+    # type3 = type_list[3].goodsinfo_set.order_by('-id')[0:4]
+    # type31 = type_list[3].goodsinfo_set.order_by('-goods_click')[0:4]
+    # type4 = type_list[4].goodsinfo_set.order_by('-id')[0:4]
+    # type41 = type_list[4].goodsinfo_set.order_by('-goods_click')[0:4]
+    # type5 = type_list[5].goodsinfo_set.order_by('-id')[0:4]
+    # type51 = type_list[5].goodsinfo_set.order_by('-goods_click')[0:4]
     cart_num = 0
     # 判断是否存在登录状态
     if request.session.has_key('user_id'):
         if 'user_id' in request.session:
             user_id = request.session['user_id']
             cart_num = CartInfo.objects.filter(user_id=int(user_id)).count()
-        context = {
+    context = {
             'title': '首页',
+            'cart_num': cart_num,
             'guest_cart': 1,
             'type0': type0, 'type01': type01,
-            'type1': type1, 'type11': type11,
-            'type2': type2, 'type21': type21,
-            'type3': type3, 'type31': type31,
-            'type4': type4, 'type41': type41,
-            'type5': type5, 'type51': type51,
+            # 'type1': type1, 'type11': type11,
+            # 'type2': type2, 'type21': type21,
+            # 'type3': type3, 'type31': type31,
+            # 'type4': type4, 'type41': type41,
+            # 'type5': type5, 'type51': type51,
         }
     return render(request, 'ttl_goods/index.html', context=context)
 
@@ -148,9 +150,9 @@ def ordinary_search(request):
         cart_num = CartInfo.objects.filter(user_id=int(user_id)).count()
 
     goods_list = GoodsInfo.objects.filter(
-        Q(gtitle__icontains=search_keywords) |
-        Q(gcontent__icontains=search_keywords) |
-        Q(gjianjie__icontains=search_keywords)).order_by("gclick")
+        Q(goodstitle__icontains=search_keywords) |
+        Q(goodscontent__icontains=search_keywords) |
+        Q(goodsjianjie__icontains=search_keywords)).order_by("gclick")
 
     if goods_list.count() == 0:
         # 商品搜索结果为空，返回推荐商品

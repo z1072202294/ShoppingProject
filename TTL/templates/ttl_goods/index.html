@@ -11,7 +11,7 @@
 		<div class="navbar">
 			<h1 class="fl">全部商品分类</h1>
 			<ul class="navlist fl">
-				<li><a href="{% url "df_goods:index" %}">首页</a></li>
+				<li><a href="{% url "ttl_goods:index" %}">首页</a></li>
 				<li class="interval">|</li>
 				<li><a href="#">手机生鲜</a></li>
 				<li class="interval">|</li>
@@ -71,7 +71,7 @@
 {#					<a href="#"><img src="/static/df_goods/goods003.jpg"></a>#}
 {#					<div class="prize">¥ 30.00</div>#}
 {#				</li>#}
-                {% for goods in type0 %}
+                {% for goods in context.type0 %}
 {#                    按照商品的最新上穿建立显示#}
                 <li>
                     <h4><a href="/{{ goods.id }}/">{{ goods.goods_title }}</a></h4>
@@ -90,7 +90,7 @@
 				<span>|</span>
 {#				<a href="#">河虾</a>#}
 {#				<a href="#">扇贝</a>				#}
-                {% for g in type1 %}
+                {% for g in context.type1 %}
                     <a href="/{{ g.id }}/">{{ g.goods_title|slice:'10' }}</a>
                 {% endfor %}
 			</div>
@@ -100,7 +100,7 @@
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>
 			<ul class="goods_list fl">
-                {% for goods in type11 %}
+                {% for goods in context.type11 %}
                 <li>
                     <h4><a href="/{{ goods.id }}/">{{ goods.goods_title }}</a></h4>
                     <a href="/{{ goods.id }}/"><img src="{{ MEDIA_URL }}{{ goods.goods_image }}"></a>

@@ -155,6 +155,9 @@
         {
             //todo
 			$("#idLogin").trigger('click');
+            {% if request.session.result %}
+            alert("登录失败");
+            {% endif %}
 			loginConfigration();
             $('#loginSubmit').click(function () {
                 LoginSubim()
@@ -256,6 +259,18 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
 
 	function LoginSubim() {
         //todo
+ /*       var name = $('#loginname').val();
+        var pwd = $("#loginpwd").val();
+        data = {loginname:name,loginpwd:pwd};
+        $.ajax({
+            url:"/user/login/",
+            type:"post",
+            data:data,
+            success:function(data){
+                alert(data)
+            }
+        })
+	*/
 	}
 
 	// Login successed link index
@@ -450,12 +465,12 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
 
 						<div class="form-group">
 							<label for="">用户名</label>
-							<input class="form-control" type="text" required="true" placeholder="" name="loginname">
-                            <span class="pwd_error" style="display: none">提示信息</span>
+							<input class="form-control" type="text" required="true" placeholder="" id="loginname" name="loginname">
+                            <span class="user_error" style="display: none">提示信息</span>
 						</div>
 						<div class="form-group">
 							<label for="">密码</label>
-							<input class="form-control" type="password"  placeholder="" name="loginpwd">
+							<input class="form-control" type="password"  placeholder="" id="loginpwd" name="loginpwd">
                             <span class="pwd_error" style="display: none">提示信息</span>
 						</div>
 						<div class="text-right">
