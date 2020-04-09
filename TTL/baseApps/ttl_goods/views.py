@@ -87,13 +87,15 @@ def good_list(request, tid, pindex, sort):
 
 def detail(request, gid):
     good_id = gid
+    print(good_id,'-------------------------')
     goods = GoodsInfo.objects.get(pk=int(good_id))
-    goods.gclick = goods.gclick + 1  # 商品点击量
+    print(goods)
+    goods.goods_click = goods.goods_click + 1  # 商品点击量
     goods.save()
 
-    news = goods.gtype.goodsinfo_set.order_by('-id')[0:2]
+    news = goods.goods_type.goodsinfo_set.order_by('-id')[0:2]
     context = {
-        'title': goods.gtype.ttitle,
+        'title': goods.goods_type.title,
         'guest_cart': 1,
         'cart_num': cart_count(request),
         'goods': goods,
