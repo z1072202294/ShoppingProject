@@ -222,10 +222,16 @@ def login(request):
 
     else:
         print("======================get")
+        if request.session.get("result"):
+            print(get__function_name())
+            print(type(get__function_name()))
+            content = {"LOGIN": get__function_name()}
+            return render(request, REGIS_PAGES_HTML, context=content)
+
         print(get__function_name())
         print(type(get__function_name()))
-        content = {"LOGIN":get__function_name()}
-        return render(request,REGIS_PAGES_HTML,context=content)
+        content = {"LOGIN": get__function_name()}
+        return render(request, REGIS_PAGES_HTML, context=content)
 
 
 

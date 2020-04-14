@@ -10,15 +10,15 @@ def index(request):
     print("==========")
     # 查询各个分类的最新4条，最热4条数据
     type_list = TypeInfo.objects.all()
-    print(type_list[0])
+    # print(type_list[0])
     type0 = type_list[0].goodsinfo_set.order_by('-id')[0:4]
     type01 = type_list[0].goodsinfo_set.order_by('-goods_click')[0:4]
-    # type1 = type_list[1].goodsinfo_set.order_by('-id')[0:4]
-    # type11 = type_list[1].goodsinfo_set.order_by('-goods_click')[0:4]
-    # type2 = type_list[2].goodsinfo_set.order_by('-id')[0:4]
-    # type21 = type_list[2].goodsinfo_set.order_by('-goods_click')[0:4]
-    # type3 = type_list[3].goodsinfo_set.order_by('-id')[0:4]
-    # type31 = type_list[3].goodsinfo_set.order_by('-goods_click')[0:4]
+    type1 = type_list[1].goodsinfo_set.order_by('-id')[0:4]
+    type11 = type_list[1].goodsinfo_set.order_by('-goods_click')[0:4]
+    type2 = type_list[2].goodsinfo_set.order_by('-id')[0:4]
+    type21 = type_list[2].goodsinfo_set.order_by('-goods_click')[0:4]
+    type3 = type_list[3].goodsinfo_set.order_by('-id')[0:4]
+    type31 = type_list[3].goodsinfo_set.order_by('-goods_click')[0:4]
     # type4 = type_list[4].goodsinfo_set.order_by('-id')[0:4]
     # type41 = type_list[4].goodsinfo_set.order_by('-goods_click')[0:4]
     # type5 = type_list[5].goodsinfo_set.order_by('-id')[0:4]
@@ -34,12 +34,13 @@ def index(request):
         'cart_num': cart_num,
         'guest_cart': 1,
         'type0': type0, 'type01': type01,
-        # 'type1': type1, 'type11': type11,
-        # 'type2': type2, 'type21': type21,
-        # 'type3': type3, 'type31': type31,
+        'type1': type1, 'type11': type11,
+        'type2': type2, 'type21': type21,
+        'type3': type3, 'type31': type31,
         # 'type4': type4, 'type41': type41,
         # 'type5': type5, 'type51': type51,
     }
+    print(context)
     return render(request, 'ttl_goods/index.html', context=context)
 
 

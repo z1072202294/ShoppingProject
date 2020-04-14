@@ -15,7 +15,7 @@ def encryptionMd5(res):
     return md5.hexdigest()
 
 def encryptionSha1(res):
-    sha1 = hashlib.sha1('abc'.encode('utf8'))
+    sha1 = hashlib.sha1(res.encode('utf8'))
     return sha1.hexdigest()
 
 def de_savePwd(f):

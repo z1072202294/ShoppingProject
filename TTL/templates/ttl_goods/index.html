@@ -41,7 +41,7 @@
 			<ul class="points"></ul>
 		</div>
 		<div class="adv fl">
-			<a href="#"><img src="/static/images/adv01.jpg"></a>
+			<a href="#"><img src="/static/images/adv01.jpg" ></a>
 			<a href="#"><img src="/static/images/adv02.jpg"></a>
 		</div>
 	</div>
@@ -54,6 +54,7 @@
 {#				<a href="#">鲜芒</a>#}
 {#				<a href="#">加州提子</a>#}
 {#				<a href="#">亚马逊牛油果</a>#}
+            {{ context }}
                 {% for g in type01 %}
                     <a href="/{{ g.id }}/">{{  g.goods_title|slice:'10' }}</a>
 {#                    这里建立一个点击量前四位的商品的链接#}
@@ -71,7 +72,7 @@
 {#					<a href="#"><img src="/static/df_goods/goods003.jpg"></a>#}
 {#					<div class="prize">¥ 30.00</div>#}
 {#				</li>#}
-                {% for goods in context.type0 %}
+                {% for goods in type0 %}
 {#                    按照商品的最新上穿建立显示#}
                 <li>
                     <h4><a href="/{{ goods.id }}/">{{ goods.goods_title }}</a></h4>
@@ -90,7 +91,7 @@
 				<span>|</span>
 {#				<a href="#">河虾</a>#}
 {#				<a href="#">扇贝</a>				#}
-                {% for g in context.type1 %}
+                {% for g in type1 %}
                     <a href="/{{ g.id }}/">{{ g.goods_title|slice:'10' }}</a>
                 {% endfor %}
 			</div>
@@ -100,7 +101,7 @@
 		<div class="goods_con clearfix">
 			<div class="goods_banner fl"><img src="/static/images/banner02.jpg"></div>
 			<ul class="goods_list fl">
-                {% for goods in context.type11 %}
+                {% for goods in type11 %}
                 <li>
                     <h4><a href="/{{ goods.id }}/">{{ goods.goods_title }}</a></h4>
                     <a href="/{{ goods.id }}/"><img src="{{ MEDIA_URL }}{{ goods.goods_image }}"></a>
