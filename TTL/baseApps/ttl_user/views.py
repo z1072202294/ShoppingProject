@@ -1,3 +1,4 @@
+
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.views import View
@@ -247,5 +248,6 @@ def logout(request):
     request.session.pop('name')
     red = HttpResponseRedirect("/user/login/")
     return red
+
 
 

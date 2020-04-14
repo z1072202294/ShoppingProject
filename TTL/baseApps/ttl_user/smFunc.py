@@ -1,3 +1,4 @@
+
 # from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user.models import UserInfo
 # from ..models import UserInfo
 
@@ -146,5 +147,7 @@ def modifypost(name,i,dict):
         return 1
     except:
         return 0
+
+
 
 
