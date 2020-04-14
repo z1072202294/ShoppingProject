@@ -85,10 +85,9 @@ class Shou(View):
 
 
 def shouModify(request):
-    if not smFunc.judgSession(request):
-        return redirect(reverse('login'))
-
-    elif request.method == "GET":
+    if request.method == "GET":
+        if not smFunc.judgSession(request):
+            return redirect(reverse('login'))
         name = request.session["name"]
         # put = QueryDict(request.body)
         mi = request.GET.get('mi')
@@ -154,9 +153,10 @@ class UserCenterView(View):
 
     def get(self,request):
         if not smFunc.judgSession(request):
-            return redirect(reverse('login'))
+            redirect(reverse('login'))
 
         elif UserInfo.objects.filter(nickname=request.session['name']):
+            print("***********************")
             name = request.session['name']
             res = UserInfo.objects.filter(nickname=name)
             print(request.session["name"])
@@ -166,11 +166,19 @@ class UserCenterView(View):
             dit = backCenterInfo(res[0])
             # return render(request,USER_CENTER_HTML)
             return render(request,USER_CENTER_HTML,context=dit)
+
         return redirect(reverse('login'))
 
     def post(self,request):
-
-        print('=====post')
+        result = {}
+        name = request.session['name']
+        res= request.POST
+        judg = res["val"]
+        re = smFunc.updatUser(name,res)
+        if judg and re:
+            request.session["name"] = judg
+        result["result"] = re
+        return JsonResponse(data=result,safe=False)
 
 
 class RegisterView(View, smFunc.RegisOpera):
@@ -201,12 +209,12 @@ def login(request):
 
 
     if request.method == 'POST':
-        print("==============post")
         res = request.POST
-        print(res)
         backv = smFunc.loginOpera(res)
-        # cache.set("info", info,3600)
         if backv:
+            res1 = request.session.get('result')
+            if res1:
+                request.session.pop("result")
             print("=====登录成功")
             REDIRECT["redirect"] = reverse("index")
             url = request.COOKIES.get('url', '/')
@@ -215,10 +223,12 @@ def login(request):
             red = HttpResponseRedirect(url)
             return red
         print("登录失败")
+
         request.session["is_login"] = False
-        request.session["result"] = '1'
+        request.session["result"] = '0'
         red = HttpResponseRedirect("/user/login/")
         return (red)
+
 
     else:
         print("======================get")
@@ -232,11 +242,10 @@ def login(request):
 
 
 #退出
-def logout(req):
-    response = HttpResponse('logout !!')
+def logout(request):
     #清理cookie里保存username
-    response.delete_cookie('nickname')
-
-    return response
+    request.session.pop('name')
+    red = HttpResponseRedirect("/user/login/")
+    return red
 
 

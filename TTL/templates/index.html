@@ -24,7 +24,7 @@
                     </a>
 
                 </div>
-                <div class="ng-toolbar-right">
+                <div class="ng-toolbar-right" style="width: 450px">
                         <a id="userExists" class="ng-bar-node-backhome,ng-bar-node">
                             <i class="ng-iconfont ng-backhome"></i>
                             <span>&nbsp</span>
@@ -40,6 +40,10 @@
                         <a id="goMyOrder" class="ng-bar-node ng-bar-node-backhome">
                             <i class="ng-iconfont ng-backhome"></i>
                             <span>我的订单</span>
+                        </a>
+                        <a id="logOut" class="ng-bar-node ng-bar-node-backhome">
+                            <i class="ng-iconfont ng-backhome"></i>
+                            <span>退出登录</span>
                         </a>
 
                 </div>
@@ -149,12 +153,15 @@
         var regis = $("#goRegis");
         var shopCart = $('#goShopCart');
         var myOrder = $('#goMyOrder');
+        var myLogOut = $("#logOut");
+
         if(user){
             userEsis.html(user);
             userEsis.css("color","red");
             userEsisHref.attr("href","/user/center/");
             shopCart.attr('href','/user/shopCart/');
             myOrder.attr('href','/user/myOrder/');
+            myLogOut.attr("href",'/user/login_out/')
         }else{
             userEsis.html("请登录");
             userEsis.css("color","red");

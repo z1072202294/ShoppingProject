@@ -15,7 +15,7 @@ def encryptionMd5(res):
     return md5.hexdigest()
 
 def encryptionSha1(res):
-    sha1 = hashlib.sha1('abc'.encode('utf8'))
+    sha1 = hashlib.sha1(res.encode('utf8'))
     return sha1.hexdigest()
 
 def de_savePwd(f):
@@ -56,11 +56,11 @@ class RegisOpera():
             print("判断name")
             #  Judg username
             if UserInfo.objects.filter(nickname=dict1['judgUsname']).exists():
-                print("存在")
+                print("已有name存在")
                 print(dict1["judgUsname"])
                 return cls.FAIL_RESULT
             else:
-                print("不存在")
+                print("name不存在可注册")
                 print(dict1["judgUsname"])
                 return cls.SUCCESS_RESULT
 
@@ -68,7 +68,9 @@ class RegisOpera():
             # save pwd
             print("保存密码")
             savePwd(dict1)
+            print(UserInfo.objects.filter(nickname=dict1['nickname']))
             return cls.REDIRECT
+
 
 def judgSession(request):
     is_login = False
@@ -76,7 +78,22 @@ def judgSession(request):
         is_login = True
     return is_login
 
-
+def updatUser(name,data):
+    user = UserInfo.objects.filter(nickname=name)[0]
+    print(user)
+    judg = data["judg"]
+    val = data["val"]
+    try:
+        if judg == "1":
+            user.nickname=val
+        elif judg == "2":
+            user.phone=val
+        elif judg == "3":
+            user.email=val
+        user.save()
+        return 1
+    except:
+        return 0
 
 def loginOpera(dict):
 
