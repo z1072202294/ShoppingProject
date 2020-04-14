@@ -153,12 +153,77 @@
 		}
 		else
         {
+            //todo
 			$("#idLogin").trigger('click');
+			loginConfigration();
             $('#loginSubmit').click(function () {
                 LoginSubim()
             });
 		}
 	}
+
+	function loginConfigration(){
+	    var logPwd = $('#loginpwd');
+	    var logNam = $('#loginname');
+            logNam.blur(function () {
+            if(logNam.val().length=0){
+                $('.user_error').html('请填写用户名').show();
+            }else{
+                $('.user_error').hide();
+            }
+        });
+            logPwd.blur(function () {
+            if(logPwd.val().length=0){
+                $('.pwd_error').html('请输入密码').show();
+            }else{
+                $('.pwd_error').hide();
+
+            }
+        })
+    }
+
+/*====================django ajax ======*/
+jQuery(document).ajaxSend(function(event, xhr, settings) {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+
+    }
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+});
+/*===============================django ajax end===*/
+    function zhunbei() {
+
+    }
 
 
 /*	====Regis submit==== */
@@ -190,26 +255,7 @@
 /*	====Login Subim==== */
 
 	function LoginSubim() {
-		let data = {
-			"nickname":$('#formLogin input[type="text"]').val(),
-			"pwd":$('#formLogin input[type="password"]').val()
-		};
-        let realLoginLink = window.location.href;
-        $.post(
-		    realLoginLink,
-		    data,
-  		    function(data,status){
-                if(data){
-                    $('#loginpwd').next().hide();
-                    window.location = data.redirect;
-                }else{
-                    $('#loginpwd').next().html("用户名或密码不正确");
-                    $('#loginpwd').next().show()
-                }
-            }
-		);
-
-
+        //todo
 	}
 
 	// Login successed link index
@@ -297,6 +343,12 @@
 
 });
 
+    function f() {
+
+    }
+
+
+
 
 
     </script>
@@ -341,6 +393,7 @@
 				</div>
 				<div class="modal-body">
 					<form id="formRegis" class="form-group" action="" method="" name="regis">
+
 						<div class="form-group">
 							<label for="register">用户名</label>
 							<input class="form-control" type="text" required="true" placeholder="6-15位字母或数字" id="username">
@@ -391,22 +444,27 @@
 					<h1 class="text-center">登录</h1>
 				</div>
 				<div class="modal-body">
-					<form id="formLogin" class="form-group" action=''>
+            <!-- todo-->
+					<form id="formLogin"  action='/user/login/' method="post">
+                        {% csrf_token %}
+
 						<div class="form-group">
 							<label for="">用户名</label>
-							<input class="form-control" type="text" required="true" placeholder="" id="loginname">
+							<input class="form-control" type="text" required="true" placeholder="" name="loginname">
+                            <span class="pwd_error" style="display: none">提示信息</span>
 						</div>
 						<div class="form-group">
 							<label for="">密码</label>
-							<input class="form-control" type="password"  placeholder="" id="loginpwd">
-                            <span class="error_tip" style="display: none">提示信息</span>
+							<input class="form-control" type="password"  placeholder="" name="loginpwd">
+                            <span class="pwd_error" style="display: none">提示信息</span>
 						</div>
 						<div class="text-right">
 						</div>
 						<a href='{% url 'register' %}' data-target="#register">还没有账号？点我注册</a>
-					</form>
-                        <button id="loginSubmit" class="btn btn-primary" type="submit">登录</button>
+                                                <button id="loginSubmit" class="btn btn-primary" type="submit">登录</button>
                         <button class="btn btn-danger" data-dismiss="modal">取消</button>
+					</form>
+
 				</div>
 			</div>
 		</div>

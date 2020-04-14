@@ -1,9 +1,12 @@
 # from Demopycharm.My_first_django.淘乐乐.ShoppingProject.TTL.baseApps.ttl_user.models import UserInfo
 # from ..models import UserInfo
+
+from django.core.cache import cache
 from .models import UserInfo
 from .models import UserInfo
 import json
 import hashlib
+
 
 
 def encryptionMd5(res):
@@ -67,24 +70,59 @@ class RegisOpera():
             savePwd(dict1)
             return cls.REDIRECT
 
-
+def judgSession(request):
+    is_login = False
+    if request.session.get('is_login'):
+        is_login = True
+    return is_login
 
 
 
 def loginOpera(dict):
 
     back_t = {}
-    name = dict['nickname']
-    pwd = dict['pwd']
+    name = dict['loginname']
+    pwd = dict['loginpwd']
     usr = UserInfo.objects.filter(nickname=name).exists()
     if usr:
         quObg = UserInfo.objects.filter(nickname=name)
         realPwd = quObg[0].password
         pwd = encryptionSha1(pwd)
         if pwd == realPwd:
-            print()
-            return True
+            return True,quObg
         else:
             return False
     else:
         return False
+
+
+def dele(name,i):
+    u1 = UserInfo.objects.filter(nickname=name)[0]
+    print(u1)
+    print("============delete",type(u1.shou))
+    shou1 = json.loads(u1.shou)
+    del shou1[i]
+    u1.shou = json.dumps(shou1)
+    u1.save()
+    return True
+
+
+def modifyget(name,i):
+    u1 = UserInfo.objects.filter(nickname=name)[0]
+
+    shou1 = json.loads(u1.shou)
+    result = {"info":shou1[i]}
+    return result
+
+def modifypost(name,i,dict):
+    try:
+        u1 = UserInfo.objects.filter(nickname=name)[0]
+        shou1 = json.loads(u1.shou)
+        shou1[i] = dict
+        u1.shou = json.dumps(shou1)
+        u1.save()
+        return 1
+    except:
+        return 0
+
+

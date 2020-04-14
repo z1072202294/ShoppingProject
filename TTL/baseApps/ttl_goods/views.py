@@ -7,6 +7,7 @@ from ttl_cart.models import CartInfo
 
 # Create your views here.
 def index(request):
+    print("==========")
     # 查询各个分类的最新4条，最热4条数据
     type_list = TypeInfo.objects.all()
     print(type_list[0])
@@ -39,7 +40,7 @@ def index(request):
             # 'type4': type4, 'type41': type41,
             # 'type5': type5, 'type51': type51,
         }
-    return render(request, 'ttl_goods/index.html', context)
+    return render(request, 'ttl_goods/index.html', context=context)
 
 
 def good_list(request, tid, pindex, sort):
@@ -82,7 +83,7 @@ def good_list(request, tid, pindex, sort):
         'sort': sort,  # 排序方式
         'news': news,
     }
-    return render(request, 'ttl_goods/list.html', context)
+    return render(request, 'ttl_goods/list.html', context=context)
 
 
 def detail(request, gid):
@@ -133,6 +134,11 @@ def cart_count(request):
 
 
 def ordinary_search(request):
+    # if request.method=='GET':
+    #     print('-=-=-=-=-=-=-=-=-=')
+    # print(request.GET.get('q'),'-----------------------------------')
+    # # print(request.POST.get('q'),'=========================')
+    # # print(request)
 
     from django.db.models import Q
 
@@ -151,14 +157,14 @@ def ordinary_search(request):
         cart_num = CartInfo.objects.filter(user_id=int(user_id)).count()
 
     goods_list = GoodsInfo.objects.filter(
-        Q(gtitle__icontains=search_keywords) |
-        Q(gcontent__icontains=search_keywords) |
-        Q(gjianjie__icontains=search_keywords)).order_by("gclick")
+        Q(goods_title__icontains=search_keywords) |
+        Q(goods_content__icontains=search_keywords) |
+        Q(goods_jianjie__icontains=search_keywords)).order_by("goods_click")
 
     if goods_list.count() == 0:
         # 商品搜索结果为空，返回推荐商品
         search_status = 0
-        goods_list = GoodsInfo.objects.all().order_by("gclick")[:4]
+        goods_list = GoodsInfo.objects.all().order_by("goods_click")[:4]
 
     paginator = Paginator(goods_list, 4)
     page = paginator.page(int(pindex))
@@ -172,3 +178,4 @@ def ordinary_search(request):
         'paginator': paginator,
     }
     return render(request, 'ttl_goods/ordinary_search.html', context)
+    # return HttpResponse('gbhjnkml,;.')

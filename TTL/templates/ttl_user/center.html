@@ -1,0 +1,96 @@
+
+{% extends "index.html" %}
+{% block title %}User Center{% endblock %}
+{% block cs %}<link rel="stylesheet" type="text/css" href="/static/css/center.css">{% endblock %}
+
+{% block content %}
+    <!--<ul class="centerbuju">
+        <h3>Basic Info</h3>
+        <li>
+            uername
+        </li>
+        <li>phone</li>
+        <li>shou</li>
+    </ul>-->
+    <div class="bacColor">
+    <h1>个人资料</h1>
+        <ul>
+            <li>
+                <span class="spanbuju">用户名</span>
+                <div class="infoDiv">
+                    <input name="text1" placeholder="请填写你的用户名" class="input" value="{{ uName }}">
+                    <div name="modifyDiv1" style="margin-right: 12rem">
+                        <button class="btn">
+                            <img src="https://b-gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" class="icon">
+                            <span id="modifySpan1" class="btn spanModify">修改</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span class="spanbuju">联系方式</span>
+                <div class="infoDiv">
+                     <input name="text2" placeholder="请填写你的联系方式" class="input" value="{{ phone }}">
+                     <div name="modifyDiv2" style="margin-right: 12rem">
+                        <button class="btn">
+                            <img src="https://b-gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" class="icon">
+                            <span id="modifySpan2" class="btn spanModify">修改</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span class="spanbuju">邮箱</span>
+                <div class="infoDiv">
+                     <input name="text4" placeholder="请填写你的邮箱地址" class="input" value="{{ email }}">
+                    <div id="modifyDiv4" style="margin-right: 12rem">
+                        <button class="btn">
+                            <img src="https://b-gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" class="icon">
+                            <span id="modifySpan3" class="btn spanModify">修改</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span class="spanbuju">收货地址</span>
+                <div class="infoDiv">
+                     <input name="text3" placeholder="请填写你的收货地址" class="input" value="{{ shou }}" readonly="readonly">
+                    <div id="modifyDiv3" style="margin-right: 12rem">
+                        <button class="btn">
+                            <img src="https://b-gold-cdn.xitu.io/v3/static/img/edit-icon.6d6382b.svg" class="icon">
+                            <a href="/user/shou/"><span id="modifySpan3" class="btn spanModify">修改</span></a>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <div id="shouDiv" style="display: none">
+                <li >
+                    <li class="shou" id="shou_nickname">
+                        收件人
+                    </li>
+                    <li class="shou" id="shou_phone">
+                        收件人联系方式
+                    </li>
+                    <li class="show" id="shou_address" style="margin-left: 75px">
+                        收件地址
+                    </li>
+                </li>
+            </div>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block scriptFlag %}
+    var sn = {isHome:false};
+    $("[name='modifyDiv1']").click(function(){
+        $("[name='text1']").select();
+    })
+
+    $("[name='modifyDiv2']").click(function(){
+    $("[name='text2']").select();
+    })
+
+        $("#modifyDiv4").click(function(){
+    $("[name='text4']").select();
+    })
+{% endblock %}
