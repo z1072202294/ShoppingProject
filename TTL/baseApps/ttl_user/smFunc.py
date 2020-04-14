@@ -80,16 +80,21 @@ def judgSession(request):
 
 def loginOpera(dict):
 
-    back_t = {}
-    name = dict['loginname']
-    pwd = dict['loginpwd']
+    name = dict.get('loginname')
+    pwd = dict.get('loginpwd')
+    print(name,"==")
+    print(pwd,"==")
     usr = UserInfo.objects.filter(nickname=name).exists()
+    print("user==",usr)
     if usr:
+        print("操作data")
         quObg = UserInfo.objects.filter(nickname=name)
+        print("取出比较")
         realPwd = quObg[0].password
         pwd = encryptionSha1(pwd)
         if pwd == realPwd:
-            return True,quObg
+            print("相等")
+            return True
         else:
             return False
     else:

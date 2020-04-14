@@ -199,23 +199,26 @@ def login(request):
     REDIRECT = {}
     FAIL = 0
 
-    global INFO
 
     if request.method == 'POST':
         print("==============post")
         res = request.POST
-        backv,info = smFunc.loginOpera(res)
-        INFO = info
+        print(res)
+        backv = smFunc.loginOpera(res)
         # cache.set("info", info,3600)
         if backv:
+            print("=====登录成功")
             REDIRECT["redirect"] = reverse("index")
             url = request.COOKIES.get('url', '/')
             request.session["name"] = res['loginname']
             request.session["is_login"] = True
             red = HttpResponseRedirect(url)
             return red
+        print("登录失败")
         request.session["is_login"] = False
-        return JsonResponse(FAIL,safe=False)
+        request.session["result"] = '1'
+        red = HttpResponseRedirect("/user/login/")
+        return (red)
 
     else:
         print("======================get")

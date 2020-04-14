@@ -3,6 +3,10 @@ from django.db import models
 # from ShoppingProject.TTL.baseApps.ttl_goods.models import GoodsInfo
 # from baseApps.ttl_goods.models import GoodsInfo
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3291e5623542141157588034829e2f6ba0f012db
 from ttl_goods.models import GoodsInfo
 from datetime import datetime
 

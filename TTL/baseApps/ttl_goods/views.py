@@ -30,16 +30,16 @@ def index(request):
             user_id = request.session['user_id']
             cart_num = CartInfo.objects.filter(user_id=int(user_id)).count()
     context = {
-            'title': '首页',
-            'cart_num': cart_num,
-            'guest_cart': 1,
-            'type0': type0, 'type01': type01,
-            # 'type1': type1, 'type11': type11,
-            # 'type2': type2, 'type21': type21,
-            # 'type3': type3, 'type31': type31,
-            # 'type4': type4, 'type41': type41,
-            # 'type5': type5, 'type51': type51,
-        }
+        'title': '首页',
+        'cart_num': cart_num,
+        'guest_cart': 1,
+        'type0': type0, 'type01': type01,
+        # 'type1': type1, 'type11': type11,
+        # 'type2': type2, 'type21': type21,
+        # 'type3': type3, 'type31': type31,
+        # 'type4': type4, 'type41': type41,
+        # 'type5': type5, 'type51': type51,
+    }
     return render(request, 'ttl_goods/index.html', context=context)
 
 
@@ -88,7 +88,7 @@ def good_list(request, tid, pindex, sort):
 
 def detail(request, gid):
     good_id = gid
-    print(good_id,'-------------------------')
+    print(good_id, '-------------------------')
     goods = GoodsInfo.objects.get(pk=int(good_id))
     print(goods)
     goods.goods_click = goods.goods_click + 1  # 商品点击量
@@ -160,22 +160,20 @@ def ordinary_search(request):
         Q(goods_title__icontains=search_keywords) |
         Q(goods_content__icontains=search_keywords) |
         Q(goods_jianjie__icontains=search_keywords)).order_by("goods_click")
-
     if goods_list.count() == 0:
-        # 商品搜索结果为空，返回推荐商品
+    # 商品搜索结果为空，返回推荐商品
         search_status = 0
-        goods_list = GoodsInfo.objects.all().order_by("goods_click")[:4]
-
+    goods_list = GoodsInfo.objects.all().order_by("goods_click")[:4]
     paginator = Paginator(goods_list, 4)
     page = paginator.page(int(pindex))
 
     context = {
-        'title': '搜索列表',
-        'search_status': search_status,
-        'guest_cart': guest_cart,
-        'cart_num': cart_num,
-        'page': page,
-        'paginator': paginator,
+    'title': '搜索列表',
+    'search_status': search_status,
+    'guest_cart': guest_cart,
+    'cart_num': cart_num,
+    'page': page,
+    'paginator': paginator,
     }
     return render(request, 'ttl_goods/ordinary_search.html', context)
     # return HttpResponse('gbhjnkml,;.')

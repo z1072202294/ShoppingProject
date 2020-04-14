@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'ttl_order',
     'ttl_goods',
     'ttl_cart',
-    'tinymce',  # 使用富文本编辑框要在settings文件中安装
+    # 'tinymce',  # 使用富文本编辑框要在settings文件中安装
 ]
 
 MIDDLEWARE = [

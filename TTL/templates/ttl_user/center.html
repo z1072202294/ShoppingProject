@@ -25,6 +25,7 @@
                             <span id="modifySpan1" class="btn spanModify">修改</span>
                         </button>
                     </div>
+<span id="modifySpan12" class="save btn spanModify" style="display: none">保存</span>
                 </div>
             </li>
             <li>
@@ -37,6 +38,7 @@
                             <span id="modifySpan2" class="btn spanModify">修改</span>
                         </button>
                     </div>
+                         <span id="modifySpan22" class="btn spanModify"  style="display: none">保存</span>
                 </div>
             </li>
             <li>
@@ -49,6 +51,7 @@
                             <span id="modifySpan3" class="btn spanModify">修改</span>
                         </button>
                     </div>
+                <span id="modifySpan32" class="btn spanModify"  style="display: none">保存</span>
                 </div>
             </li>
             <li>
@@ -82,15 +85,37 @@
 
 {% block scriptFlag %}
     var sn = {isHome:false};
+    var alter12 = $("#modifySpan12");
+    var alter22 = $("#modifySpan22");
+    var alter32 = $("#modifySpan32");
+
+    function modif(n) {
+        n.click(function(){
+{#            alter32.css("display","none");#}
+{#            alter12.toggle();#}
+            n.hide();
+{#            n.hide();#}
+{#            console.log(typeof n);#}
+        })
+    }
+
+    var sn = {isHome:false};
     $("[name='modifyDiv1']").click(function(){
         $("[name='text1']").select();
+        alter12.show();
+        modif(alter12);
+
     })
 
     $("[name='modifyDiv2']").click(function(){
-    $("[name='text2']").select();
+        $("[name='text2']").select();
+        alter22.show();
+        modif(alter22);
     })
 
-        $("#modifyDiv4").click(function(){
-    $("[name='text4']").select();
+    $("#modifyDiv4").click(function(){
+        $("[name='text4']").select();
+        alter32.show()
+        modif(alter32);
     })
 {% endblock %}

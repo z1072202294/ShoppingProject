@@ -7,7 +7,7 @@ from django import forms
 
 def index(request):
     if request.method == "POST":
-        print("post == 首页")
+        print("post == 首页   ")
         res = request.POST
         return render(request,'index.html',context=res)
 
