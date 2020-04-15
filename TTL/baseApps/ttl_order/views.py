@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render
 
 # Create your views here.
@@ -46,3 +47,8 @@ def judgOrder(request):
     return render(request, 'order/confrim.html', context)
 
 
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa
