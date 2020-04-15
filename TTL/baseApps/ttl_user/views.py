@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 
 from django.shortcuts import render,redirect
 from django.urls import reverse
@@ -251,3 +253,4 @@ def logout(request):
 
 
 
+>>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa

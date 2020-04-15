@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
@@ -21,3 +23,4 @@ urlpatterns = [
     # # url(r'^place_order/$', views.place_order),
     # url(r'^logout/$', logout, name="logout"),
 ]
+>>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa

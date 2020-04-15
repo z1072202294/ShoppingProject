@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 from django.test import TestCase
 import django
 import os,sys,requests,json
@@ -176,3 +178,4 @@ print(c.append(1))
 print(c)
 
 
+>>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa
