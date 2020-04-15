@@ -20,8 +20,8 @@ from . import v1
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/',include('ttl_user.urls'),name = 'ttl_user'),
-    # path('order/',include('ttl_order.urls'),name = 'ttl_order'),
+    # path('user/',include('ttl_user.urls'),name = 'ttl_user'),
+    path('user/',include('ttl_order.urls'),name = 'ttl_order'),
     # path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),
     # path('cart/',include('ttl_cart.urls'),name = 'ttl_cart'),
 

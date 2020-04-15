@@ -1,3 +1,3 @@
-DATABASE='shooping_1'
+DATABASE='order_1'
 PASSWORD   ='124926'
 USER  = 'root'

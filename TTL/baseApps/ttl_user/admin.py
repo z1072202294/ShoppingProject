@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserInfo
+# from .models import UserInfo
 
 
 # Register your models here.
@@ -7,4 +7,4 @@ from .models import UserInfo
 #     list_display = ['nickname', 'email', 'shou', 'address', 'youbian', 'phone']
 
 
-admin.site.register(UserInfo)
+# admin.site.register(UserInfo)
