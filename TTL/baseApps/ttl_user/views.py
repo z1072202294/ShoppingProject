@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 from django.shortcuts import render,redirect
 from django.urls import reverse
@@ -47,7 +45,7 @@ class Shou(View):
         if not smFunc.judgSession(request):
             return redirect(reverse('login'))
 
-        res = UserInfo.objects.filter(nickname=request.session['name'])
+        res = UserInfo.objects.filter(id=request.session['user_id'])
         shou = json.loads(res[0].shou)
         print(shou)
         shouAd = {"info":shou}
@@ -56,7 +54,7 @@ class Shou(View):
 
     def post(self,request):
         print("==========POST")
-        res = UserInfo.objects.filter(nickname=request.session['name'])
+        res = UserInfo.objects.filter(id=request.session['user_id'])
         shou = res[0]
         print("库中已存在的")
         print(shou.shou)
@@ -74,11 +72,11 @@ class Shou(View):
         AttributeError    WSGIRequest' object has no attribute 'DELETE'
         '''
         print("delete")
-        name = request.session["name"]
+        user_id = request.session["user_id"]
         delete = QueryDict(request.body)
         a = delete.get('di')
         i = int(a)-10
-        result = smFunc.dele(name,i)
+        result = smFunc.dele(user_id,i)
         if result:
             del result
             dit = {"result":"success"}
@@ -91,17 +89,17 @@ def shouModify(request):
     if request.method == "GET":
         if not smFunc.judgSession(request):
             return redirect(reverse('login'))
-        name = request.session["name"]
+        user_id = request.session["user_id"]
         # put = QueryDict(request.body)
         mi = request.GET.get('mi')
         # mi = put.get("mi")
         i = int(mi) -10
-        result = smFunc.modifyget(name,i)
+        result = smFunc.modifyget(user_id,i)
         print("=======get",result)
         return render(request,USER_MODIFY_HTML,context=result)
     print("=====post")
     res = request.POST
-    name = request.session["name"]
+    user_id = request.session["user_id"]
     dit = {
         "addr" : res.get('addr'),
         "shouname" : res.get('shouname'),
@@ -110,7 +108,7 @@ def shouModify(request):
     }
 
     mi = int(res.get("mi"))-10
-    result = smFunc.modifypost(name,mi,dit)
+    result = smFunc.modifypost(user_id,mi,dit)
     cont = {"result":result,"REDIRECT":reverse("shou")}
     return JsonResponse(data=cont,safe=False)
 
@@ -158,11 +156,11 @@ class UserCenterView(View):
         if not smFunc.judgSession(request):
             redirect(reverse('login'))
 
-        elif UserInfo.objects.filter(nickname=request.session['name']):
+        elif UserInfo.objects.filter(id=request.session['user_id']):
             print("***********************")
-            name = request.session['name']
-            res = UserInfo.objects.filter(nickname=name)
-            print(request.session["name"])
+            user_id = request.session['user_id']
+            res = UserInfo.objects.filter(id=user_id)
+            print(request.session["user_id"])
             print(res)
             res1 = res[0].shou
             print(json.loads(res1))
@@ -174,12 +172,12 @@ class UserCenterView(View):
 
     def post(self,request):
         result = {}
-        name = request.session['name']
+        name = request.session['user_id']
         res= request.POST
         judg = res["val"]
         re = smFunc.updatUser(name,res)
         if judg and re:
-            request.session["name"] = judg
+            request.session["user_id"] = judg
         result["result"] = re
         return JsonResponse(data=result,safe=False)
 
@@ -221,7 +219,10 @@ def login(request):
             print("=====登录成功")
             REDIRECT["redirect"] = reverse("index")
             url = request.COOKIES.get('url', '/')
-            request.session["name"] = res['loginname']
+            uid = UserInfo.objects.filter(nickname=res['loginname'])[0]
+            print(uid)
+            request.session["user_id"] = uid.id
+            request.session["name"] = uid.nickname
             request.session["is_login"] = True
             red = HttpResponseRedirect(url)
             return red
@@ -247,10 +248,7 @@ def login(request):
 #退出
 def logout(request):
     #清理cookie里保存username
-    request.session.pop('name')
+    request.session.pop('user_id')
     red = HttpResponseRedirect("/user/login/")
     return red
 
-
-
->>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa

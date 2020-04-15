@@ -1,15 +1,16 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.urls import reverse
 from django.http import JsonResponse
 from .models import *
 
 # # Create your views here.
-from baseApps.ttl_user import views
+from ttl_user import views
 
 
-@views.login
+# @views.login
 def user_cart(request):
     uid = request.session['user_id']
-    carts = CartInfo.objects.filter(user_id= uid)
+    carts = CartInfo.objects.filter(user_id=uid)
     context = {
         'title': '购物车',
         'page_name': 1,
@@ -17,12 +18,14 @@ def user_cart(request):
     }
     if request.is_ajax():
         count = CartInfo.objects.filter(user_id=request.session['user_id']).count()
-        return JsonResponse({'count':count})
+        # 求当前用户购买了几件商品
+        return JsonResponse({'count': count})
     else:
-        return redirect(reversed('ttl_cart:cart'))
+        return render(request, 'ttl_cart/cart.html', context)
 
 
-@views.login
+
+# @views.login
 def edit(request,cart_id,count):
     data = {}
     try:
@@ -34,7 +37,7 @@ def edit(request,cart_id,count):
     return JsonResponse(data)
 
 
-@views.login
+# @views.login
 def delete(request,cart_id):
     data = {}
     try:

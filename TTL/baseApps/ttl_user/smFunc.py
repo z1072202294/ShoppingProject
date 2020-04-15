@@ -79,8 +79,8 @@ def judgSession(request):
         is_login = True
     return is_login
 
-def updatUser(name,data):
-    user = UserInfo.objects.filter(nickname=name)[0]
+def updatUser(id,data):
+    user = UserInfo.objects.filter(id=id)[0]
     print(user)
     judg = data["judg"]
     val = data["val"]
@@ -119,8 +119,8 @@ def loginOpera(dict):
         return False
 
 
-def dele(name,i):
-    u1 = UserInfo.objects.filter(nickname=name)[0]
+def dele(user_id,i):
+    u1 = UserInfo.objects.filter(id=user_id)[0]
     print(u1)
     print("============delete",type(u1.shou))
     shou1 = json.loads(u1.shou)
@@ -130,16 +130,16 @@ def dele(name,i):
     return True
 
 
-def modifyget(name,i):
-    u1 = UserInfo.objects.filter(nickname=name)[0]
+def modifyget(user_id,i):
+    u1 = UserInfo.objects.filter(id=user_id)[0]
 
     shou1 = json.loads(u1.shou)
     result = {"info":shou1[i]}
     return result
 
-def modifypost(name,i,dict):
+def modifypost(user_id,i,dict):
     try:
-        u1 = UserInfo.objects.filter(nickname=name)[0]
+        u1 = UserInfo.objects.filter(id=user_id)[0]
         shou1 = json.loads(u1.shou)
         shou1[i] = dict
         u1.shou = json.dumps(shou1)

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.db import models
 
 # Create your models here.
@@ -58,8 +58,8 @@ class OrderInfo(models.Model):  # 大订单
     # def __str__(self):
     #     # return self.goods.gtitle + "(数量为" + str(self.count)  + ")"
     #     return "{0}(数量为{1})".format(self.goods.gtitle, self.count)
-=======
+
 from django.db import models
 
 # Create your models here.
->>>>>>> 645714608c9093b20d7b9df3bee8fc8110c61baa
+

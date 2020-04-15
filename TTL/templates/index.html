@@ -156,11 +156,13 @@
         var myOrder = $('#goMyOrder');
         var myLogOut = $("#logOut");
 
+        alert(user);
+
         if(user){
             userEsis.html(user);
             userEsis.css("color","red");
             userEsisHref.attr("href","/user/center/");
-            shopCart.attr('href','/user/shopCart/');
+            shopCart.attr('href','/cart/');
             myOrder.attr('href','/user/myOrder/');
             myLogOut.attr("href",'/user/login_out/')
         }else{
@@ -169,6 +171,7 @@
             userEsisHref.attr('href',"/user/login");
             shopCart.attr('href','/user/login/');
             myOrder.attr('href','/user/login/');
+            myLogOut.hide();
         }
         {% block ajx %}
         {% endblock %}
