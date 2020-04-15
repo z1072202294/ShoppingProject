@@ -70,7 +70,7 @@
 					<a href="javascript:minus();" class="minus fr">-</a>
 				</div>
 			</div>
-			<div class="total">总价：<em id="gtotal">{{ goods.gprice }}元</em></div>
+			<div class="total">总价：<em id="gtotal">{{ goods.goods_price }}元</em></div>
 			<div class="operate_btn">
                 {% if request.session.user_name|default:'' != '' %}
                     <a href="javascript:;" class="buy_btn" id="buy_now">立即购买</a>

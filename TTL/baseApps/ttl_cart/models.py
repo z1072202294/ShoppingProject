@@ -5,15 +5,15 @@ from django.conf import settings
 
 # Create your models here.
 
-from ttl_goods.models import GoodsInfo
-from ttl_user.models import UserInfo
+from baseApps.ttl_goods.models import GoodsInfo
+from baseApps.ttl_user.models import UserInfo
 
 class  CartInfo(models.Model):
     # 用户
     user = models.ForeignKey(UserInfo,on_delete=models.CASCADE,verbose_name='用户')
     # 商品
     goods = models.ForeignKey(GoodsInfo,on_delete=models.CASCADE,verbose_name='商品')
-    # 数量
+    # 买的数量
     count = models.IntegerField(verbose_name='',default=0)
 
 
