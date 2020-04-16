@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from .models import *
 
 # # Create your views here.
-from ttl_user import views
+# from ttl_user import views
 
 
 # @views.login
@@ -21,7 +21,7 @@ def user_cart(request):
         # 求当前用户购买了几件商品
         return JsonResponse({'count': count})
     else:
-        return render(request, 'ttl_cart/cart.html', context)
+        return render(request, 'ttl_cart/cart_1.html', context)
 
 
 

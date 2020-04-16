@@ -24,7 +24,8 @@ urlpatterns = [
     path('user/',include('ttl_user.urls'),name = 'ttl_user'),
     path('order/',include('ttl_order.urls'),name = 'ttl_order'),
     path('goods/',include('ttl_goods.urls'),name = 'ttl_goods'),
-    path('cart/',include('ttl_cart.urls'),name = 'ttl_cart'),
+    path('cart_1/',include('ttl_cart.urls'),name = 'ttl_cart'),
+    path('cart_1/success.html',include('ttl_cart.urls'),name = 'ttl_cart'),
 
 ]
 
