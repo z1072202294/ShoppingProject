@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
 
 </head>
 
-<body style="background-color:rgb(244,244,244)">
+<body style="background-color:rgb(244,244,244);width: 100%;padding: 0px;margin: 0px">
 
     <div id="top" class="ng-toolbar">
             <div class="ng-toolbar-con wrapper">
@@ -51,38 +50,41 @@
             </div>
         </div>
 
-    <div style="width: 100%;background-color: white">
-       <div id="logo">
-       <a href="/">
-           <img id="logoimg" src="/static/image/logo4.png">
-        </a>
-   </div>
+    <div style="width: 100%;background-color: #ccc;padding: 10px 5px 0px 50px">
+{#       <div id="logo">#}
+            <a href="/" style="float: left;margin-top: 20px">
+                <img id="logoimg" src="/static/image/logo5.png">
+            </a>
+{#        </div>#}
 
-        <div id="search">
-        <form method="get" onsubmit="">
-            <div class="searchStyle">
-                <i class="glyphicon glyphicon-search" style="float: left;margin:10px">  </i>
-                <input id="searchKeywords" type="text" value="手机电脑至高24期免息" onfocus="if (value =='手机电脑至高24期免息'){value =''}" onblur="if (value ==''){value='手机电脑至高24期免息'}" autocomplete="off"/>
-            </div>
-            <input id="searchSubmit" type="submit" value="搜索">
-            <div id="tag">
-                <a target="" href="">手机 |&nbsp</a>
-                <a target="" href="" style=""> 烟灶 | &nbsp</a>
-                <a target="" href=""> 烤箱 | &nbsp</a>
-                <a target="" href=""> 电视 | &nbsp</a>
-                <a target="" href="" style="color: red"> 笔记本 | &nbsp</a>
-                <a target="" href=""> 大米 | &nbsp</a>
-                <a target="" href=""> 冰箱 | &nbsp</a>
-                <a target="" href=""> 茅台 | &nbsp</a>
-                <a target="" href=""> 热水器</a>
-            </div>
-        </form>
+        <div id="search" style="float: left;margin-left: 350px;margin-top: 20px">
+            <form method="get" onsubmit="">
+                <div class="searchStyle" >
+                    <i class="glyphicon glyphicon-search" style="width: 100%;right: -10px;top: 36px">  </i>
+                    <input style="border-top-left-radius:40px;border-bottom-left-radius: 40px " id="searchKeywords" type="text" value="手机电脑至高24期免息" onfocus="if (value =='手机电脑至高24期免息'){value =''}" onblur="if (value ==''){value='手机电脑至高24期免息'}" autocomplete="off"/>
+                    <div style="position: relative;left:450px;bottom: 120px;height: 20px"><input id="searchSubmit" type="submit" value="搜索"></div>
+
+                </div>
+                <li style="list-style: none;position:absolute;font-size: 15px">
+                     <a target="" href="#">手机 |&nbsp</a>
+                    <a target="" href="#" style=""> 烟灶 | &nbsp</a>
+                    <a target="" href="#"> 烤箱 | &nbsp</a>
+                    <a target="" href="#"> 电视 | &nbsp</a>
+                    <a target="" href="#" style="color: red"> 笔记本 | &nbsp</a>
+                    <a target="" href="#"> 大米 | &nbsp</a>
+                    <a target="" href="#"> 冰箱 | &nbsp</a>
+                    <a target="" href="#"> 茅台 | &nbsp</a>
+                    <a target="" href="#"> 热水器</a>
+                </li>
+
+            </form>
+        </div>
     </div>
-    </div>
+    <div style="clear: left"></div>
 
 
    <div id="parentDiv" style="background-color: rgb(244,244,244);width: 100%">
-    {% block content %}
+    {% block center_body %}
         <div id="hengFu">
             <div class="subHengFu">
                 <h2>主题市场</h2>

@@ -1,3 +1,3 @@
-DATABASE='order_1'
-PASSWORD   ='124926'
+DATABASE='ttl'
+PASSWORD   ='11223.'
 USER  = 'root'
